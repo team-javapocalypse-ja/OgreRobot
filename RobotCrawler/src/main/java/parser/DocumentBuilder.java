@@ -14,7 +14,13 @@ public class DocumentBuilder {
 
     private File file;
 
+    private String urlPath;
+
     public Document buildFromFile() throws IOException {
         return Jsoup.parse(file, null);
+    }
+
+    public Document buildFromUrl() throws IOException {
+        return Jsoup.connect(urlPath).get();
     }
 }

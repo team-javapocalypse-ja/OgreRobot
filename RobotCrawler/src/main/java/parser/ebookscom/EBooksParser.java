@@ -1,6 +1,7 @@
 package parser.ebookscom;
 
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import parser.Parser;
 
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.stream.Collectors;
 /**
  * Created by ehsan on 25.08.16.
  */
-public class EBooksParser implements Parser {
+public class EBooksParser implements Parser<Element> {
 
     @Override
     public List parse(Document document) {
