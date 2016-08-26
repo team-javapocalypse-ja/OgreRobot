@@ -1,40 +1,41 @@
 package parser.ebookscom;
 
 import org.jsoup.nodes.Element;
-import parser.BookDataGetter;
+import parser.BookDataCollector;
 
 /**
- * Created by ehsan on 25.08.16.
+ * To collect the data that the {@link EBooksParser}
+ * parsed earlier.
  */
-public class EBooksDataGetter implements BookDataGetter<Element> {
+public class EBooksDataCollector implements BookDataCollector<Element> {
 
-    public String  getUrl(Element element){
+    public String urlFrom(Element element){
         return element.select(".book-title a").attr("href");
     }
 
     @Override
-    public String getLibrary(Element element) {
+    public String libraryFrom(Element element) {
         return "http://www.ebooks.com/";
     }
 
     @Override
-    public String getTag(Element element) {
+    public String tagFrom(Element element) {
         return null;
     }
 
-    public String getTitle(Element element){
+    public String titleFrom(Element element){
         return element.select(".book-title a").text();
     }
 
-    public String getAuthor(Element element){
+    public String authorFrom(Element element){
         return element.select(".author").text();
     }
 
-    public String getDescription(Element element){
+    public String descriptionFrom(Element element){
         return element.select("p").text();
     }
 
-    public String getPrice(Element element){
+    public String priceFrom(Element element){
         String str1 = element.select(".additional-info span span span").toString();
         return element.select(".additional-info span span")
                 .toString().replace(str1,"")

@@ -5,26 +5,27 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import parser.BookDataGetter;
+import parser.BookDataCollector;
 import parser.DocumentBuilder;
 import parser.Parser;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
 /**
- * This parser is responsible to parse data prom the
+ * Testing the parser and test how the collector is working, if collect the data properly.
  */
 public class EBooksParserTest {
 
     private Document theHtmlFile = null;
     private Parser<Element> parser = new EBooksParser();
-    private BookDataGetter getter = new EBooksDataGetter();
+    private BookDataCollector getter = new EBooksDataCollector();
     @BeforeTest
     protected void initTest(){
         File file = new File(System.getProperty("user.dir") + "/src/test/resources/parser-ebook-test-1.html");
@@ -45,12 +46,8 @@ public class EBooksParserTest {
         List<Element> offers = parser.parse(theHtmlFile);
 
         // then
-        if(offers==null){
-            // this state is invalid and test cannot be passed in this situation
-            assertFalse(true);
-        }else{
-            assertEquals(offers.size(), 1);
-        }
+        assertFalse(Objects.isNull(offers));
+        assertEquals(offers.size(), 1);
     }
 
     @Test
@@ -61,15 +58,9 @@ public class EBooksParserTest {
         // when
         List<Element> offers = parser.parse(theHtmlFile);
 
-        List<BookData> bookDataList = BookDataFactory.newListBookData(offers, getter, "art");
-
         // then
-        if(offers==null){
-            // this state is invalid and test cannot be passed in this situation
-            assertFalse(true);
-        }else{
-            assertEquals(offers.size(), 1);
-        }
+        assertFalse(Objects.isNull(offers));
+        assertEquals(offers.size(), 1);
     }
 
     @Test
@@ -80,14 +71,12 @@ public class EBooksParserTest {
         try {
              documentFromUrl = DocumentBuilder.builder().urlPath(URL_E_BOOKS_COM).build().buildFromUrl();
         } catch (IOException e) {
-            // this state is invalid and test cannot be passed in this situation
-            assertFalse(true);
+            // TODO there must be the logger
+            assertFalse(true, "this state is invalid and test cannot be passed in this situation");
         }
 
-        if(documentFromUrl==null){
-            // this state is invalid and test cannot be passed in this situation
-            assertFalse(true);
-        }
+        assertFalse(Objects.isNull(documentFromUrl));
+
         // when
         List<Element> offersUrl = parser.parse(documentFromUrl);
         List<BookData> bookDataList = BookDataFactory.newListBookData(offersUrl, getter, "art");

@@ -3,7 +3,7 @@ package parser.ebookscom;
 
 
 import model.BookData;
-import parser.BookDataGetter;
+import parser.BookDataCollector;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,8 +16,8 @@ public class BookDataFactory {
 
     /**
      *
-     * @param element
-     * @param bookDataGetter
+     * @param element - Element Type T
+     * @param bookDataCollector - Specific {@link BookDataCollector} implemented for type T.
      * @return
      *          <ul>
      *              <li>
@@ -29,44 +29,32 @@ public class BookDataFactory {
      *          </ul>
      *
      */
-    private static <T> BookData prepareBookData(T element, BookDataGetter<T> bookDataGetter, String tag) {
+    private static <T> BookData prepareBookData(T element, BookDataCollector<T> bookDataCollector, String tag) {
         return builder
-                .title(bookDataGetter.getTitle(element))
-                .author(bookDataGetter.getAuthor(element))
-                .description(bookDataGetter.getDescription(element))
-                .price(bookDataGetter.getPrice(element))
-                .url(bookDataGetter.getUrl(element))
-                .library(bookDataGetter.getLibrary(element))
+                .title(bookDataCollector.titleFrom(element))
+                .author(bookDataCollector.authorFrom(element))
+                .description(bookDataCollector.descriptionFrom(element))
+                .price(bookDataCollector.priceFrom(element))
+                .url(bookDataCollector.urlFrom(element))
+                .library(bookDataCollector.libraryFrom(element))
                 .tag(tag)
                 .build();
     }
 
     /**
-     * The same as prepareBookData, in some situation we dont need the tag name
-     * @param element
-     * @param bookDataGetter
-     * @param <T>
-     * @return
-     */
-    private static <T> BookData prepareBookData(T element, BookDataGetter<T> bookDataGetter) {
-        return prepareBookData(element, bookDataGetter, bookDataGetter.getTag(element));
-    }
-
-    /**
-     *
-     * @param elements
-     * @param bookDataGetter
-     * @param tag
-     * @param <T>
-     * @return {@link List}
+     *  This method works per tag, if you already have your that is the list of type T you may implement another method.
+     * @param elements - the list of elements that returned parsed by {@link parser.Parser}
+     * @param bookDataCollector - the implemented collector for specific {@link parser.Parser}
+     * @param tag - the list has a tag for example art, IT, music
+     * @return {@link List} - List of {@link BookData}, the bookData is collected by specific {@link BookDataCollector}
      */
     public static <T>
-    List<BookData> newListBookData(List<T> elements, BookDataGetter<T> bookDataGetter, String tag){
-        if(elements==null || bookDataGetter==null){
+    List<BookData> newListBookData(List<T> elements, BookDataCollector<T> bookDataCollector, String tag){
+        if(elements==null || bookDataCollector ==null){
             throw new IllegalArgumentException();
         }
         return elements.stream().map(e->
-                prepareBookData(e, bookDataGetter, tag))
+                prepareBookData(e, bookDataCollector, tag))
                 .filter(e->!e.equals(null))
                 .collect(Collectors.toList());
     }

@@ -21,6 +21,7 @@ public class DocumentBuilder {
     }
 
     public Document buildFromUrl() throws IOException {
+        // TODO Some connections need cookie
         return Jsoup.connect(urlPath).get();
     }
 }
