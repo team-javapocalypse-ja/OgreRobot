@@ -9,13 +9,14 @@ import parser.BookDataCollector;
  */
 public class EBooksDataCollector implements BookDataCollector<Element> {
 
+    private final String LIB_URL = "http://www.ebooks.com/";
     public String urlFrom(Element element){
         return element.select(".book-title a").attr("href");
     }
 
     @Override
     public String libraryFrom(Element element) {
-        return "http://www.ebooks.com/";
+        return LIB_URL;
     }
 
     @Override

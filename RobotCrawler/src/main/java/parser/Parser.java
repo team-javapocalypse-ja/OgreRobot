@@ -4,9 +4,7 @@ import org.jsoup.nodes.Document;
 
 import java.util.List;
 
-/**
- * Functional interface
- */
+@FunctionalInterface
 public interface Parser<T> {
     /**
      * Parser the document given as parameter

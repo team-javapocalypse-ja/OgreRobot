@@ -11,6 +11,9 @@ import parser.Parser;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Objects;
 
@@ -28,10 +31,11 @@ public class EBooksParserTest {
     private BookDataCollector getter = new EBooksDataCollector();
     @BeforeTest
     protected void initTest(){
-        File file = new File(System.getProperty("user.dir") + "/src/test/resources/parser-ebook-test-1.html");
         try {
+            Path path = Paths.get(getClass().getResource("/parser-ebook-test-1.html").toURI());
+            File file = new File(path.toUri());
             theHtmlFile = DocumentBuilder.builder().file(file).build().buildFromFile();
-        } catch (IOException e) {
+        } catch (IOException |URISyntaxException e) {
             // TODO there must be the logger
             throw new AssertionError();
         }
