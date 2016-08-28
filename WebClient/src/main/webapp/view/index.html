@@ -1,1 +1,37 @@
-<H1>Hello</H1>
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="/view/ViewMaster.js"></script>
+    <script src="/view/RequestMaster.js"></script>
+    <script src="/view/Executable.js"></script>
+    <script src="/view/EBooksCategory.js"></script>
+</head>
+
+<style>
+
+    #book-area table{
+        width: 100%;
+    }
+    #book-area table tr td{
+        border: 1px solid green;
+
+    }
+
+</style>
+
+<body>
+
+    <button id="theButton">Search for art on ebooks.com</button>
+    <div id="book-area"></div>
+    
+    
+    <script>
+        ViewMaster.newTable("book-area");
+        
+        $("#theButton").click(function(){
+            RequestMaster.sendRequest(RequestMaster.setData(EBooksCategory.art), Executable.bookDataListExecutable);
+        });
+    </script>
+</body>
+</html>
