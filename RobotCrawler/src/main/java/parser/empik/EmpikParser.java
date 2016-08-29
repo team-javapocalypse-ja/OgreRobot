@@ -3,10 +3,10 @@ package parser.empik;
 import model.BookData;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.stream.Collector;
 
 public class EmpikParser {
 
@@ -23,36 +23,26 @@ public class EmpikParser {
         this.bookPageParser = bookPageParser;
     }
 
-    public List<BookData> parse() {
-        return parse(new ArrayList<>());
-    }
-
-    public List<BookData> parse(List<String> categories) {
+    public Map<String, List<BookData>> parse() {
         List<String> categoryPageUrls = promotionsPageParser.extractCategoryPageUrls();
         List<String> bookPageUrls = categoryPageParser.extractBookPageUrls(categoryPageUrls);
         List<BookData> booksData = bookPageParser.extractBooks(bookPageUrls);
 
-        Predicate<BookData> categoryPredicate = new CategoryPredicate(categories);
-        return booksData.stream().filter(categoryPredicate).collect(Collectors.toList());
-    }
-
-    private static class CategoryPredicate implements Predicate<BookData> {
-
-        private final List<String> categories;
-
-        public CategoryPredicate(List<String> categories) {
-            this.categories = categories;
-        }
-
-        @Override
-        public boolean test(BookData bookData) {
-            if (categories.isEmpty()) {
-                return true;
+        return booksData.stream().collect(Collector.of(HashMap::new, (map, e) -> {
+            if (!map.containsKey(e.tag)) {
+                map.put(e.tag, new ArrayList<>());
             }
 
-            return categories.contains(bookData.tag);
-        }
-
+            map.get(e.tag).add(e);
+        }, (m1, m2) -> {
+            m2.entrySet().stream().forEach(entry -> {
+                if (!m1.containsKey(entry.getKey())) {
+                    m1.put(entry.getKey(), new ArrayList<>());
+                }
+                m1.get(entry.getKey()).addAll(entry.getValue());
+            });
+            return m1;
+        }));
     }
 
 }
