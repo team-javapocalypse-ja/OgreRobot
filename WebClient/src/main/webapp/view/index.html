@@ -31,14 +31,28 @@
     
     
     <script>
-        ViewMaster.newTable("book-area");
-        
+        initPage();
         $("#theButton").click(function(){
+            // adding the checked List
+            prepareCheckBoxLis();
+            ViewMaster.newTable("book-area");
             RequestMaster.sendRequest(RequestMaster.setData(EBooksCategory.profile), Executable.bookDataListExecutable);
         });
-
-        ViewMaster.addCheckBoxList(EBooksCategory.categoryList, "checkbox-area");
-
+        
+        function prepareCheckBoxLis(){
+            EBooksCategory.resetList();
+            
+            $("#checkbox-area input").each(function(){
+                if(this.checked){
+                    EBooksCategory.addToProfile($(this).attr('value'));
+                }
+            });
+        }
+        
+        function initPage(){
+            ViewMaster.addCheckBoxList(EBooksCategory.categoryList, "checkbox-area");
+        }
+        
     </script>
 </body>
 </html>

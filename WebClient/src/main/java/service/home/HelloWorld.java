@@ -23,7 +23,7 @@ public class HelloWorld {
 
         robot.startLookingForOffers();
 
-        return robot.getOffers();
+        return robot.getOffers(categories);
     }
 
 }

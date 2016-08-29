@@ -5,7 +5,9 @@ var ViewMaster = {
     newTableHtml : function(){
         return "<table id='newTable'>" 
                     + "<tr>"
+                        +"<th>Category</th>" 
                         +"<th>Title</th>" 
+                        +"<th>Description</th>" 
                         +"<th>author</th>" 
                         +"<th>price</th>" 
                     + "</tr>" 
@@ -20,19 +22,22 @@ var ViewMaster = {
         ViewMaster.table = $("#newTable");
     },
     
-    newRow : function(title, author, price){
+    newRow : function(category, title, description, author, price){
         return    "\<tr>" // without \ it will be print a NaN, no idea why
+                    +"<td>"+category+"</td>" 
                     +"<td>"+title+"</td>" 
+                    +"<td>"+description+"</td>" 
                     +"<td>"+author+"</td>" 
                     +"<td>"+price+"</td>" 
                 + "</tr>";
     },
     addrowFromBookData : function(data){
-        ViewMaster.addRow(data.title, data.author, data.price);
+        ViewMaster.addRow("", data.title, data.description, data.author, data.price, data.url);
     },
-    addRow : function(title, author, price){
+    addRow : function(category, title, description, author, price, url){
         id = ViewMaster.table.attr("id");
-        $("#newTable tr:last").after(ViewMaster.newRow(title, author, price));
+        description = description.replace("more...", "\<a href='"+url+"'> more </a>");
+        $("#newTable tr:last").after(ViewMaster.newRow(category, title, description, author, price));
     },
     
     addCheckBoxList : function(theList, divId){
@@ -42,11 +47,6 @@ var ViewMaster = {
                 ViewMaster.addCheckBox(category, _div);
             }
         );
-        
-        _div.find('input').click(function(){
-            EBooksCategory.addToProfile($(this).attr('value'));
-        });
-        
     },
     //	<input type="checkbox" name="vehicle" value="Bike"> I have a bike<br>
     addCheckBox : function(category, where){
@@ -54,7 +54,9 @@ var ViewMaster = {
             +"name='"+category+"' value='"+category+"' >" 
             +" " + category;
         where.append(_checkbox);
+    },
+    
+    newCategoryRow : function(category){
+        ViewMaster.addRow(category, "", "", "", "");
     }
-    
-    
 };

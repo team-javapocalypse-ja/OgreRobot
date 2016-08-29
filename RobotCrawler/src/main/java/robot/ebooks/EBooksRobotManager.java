@@ -48,4 +48,10 @@ public class EBooksRobotManager {
     public EnumMap<EBookCategory, List<BookData>> getOffers(){
         return tasks.clone();
     }
+
+    public EnumMap<EBookCategory, List<BookData>> getOffers(List<EBookCategory> categoriesINeedNow){
+        EnumMap<EBookCategory, List<BookData>> retOffers = new EnumMap<EBookCategory, List<BookData>>(EBookCategory.class);
+        categoriesINeedNow.forEach(key->retOffers.put(key, tasks.get(key)));
+        return retOffers;
+    }
 }
