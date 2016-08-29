@@ -23,6 +23,10 @@
 <body>
 
     <button id="theButton">Search for art on ebooks.com</button>
+    
+    
+    
+    <div id="checkbox-area"></div>
     <div id="book-area"></div>
     
     
@@ -30,8 +34,11 @@
         ViewMaster.newTable("book-area");
         
         $("#theButton").click(function(){
-            RequestMaster.sendRequest(RequestMaster.setData(EBooksCategory.art), Executable.bookDataListExecutable);
+            RequestMaster.sendRequest(RequestMaster.setData(EBooksCategory.profile), Executable.bookDataListExecutable);
         });
+        
+        ViewMaster.addCheckBoxList(EBooksCategory.categoryList, "checkbox-area");
+        
     </script>
 </body>
 </html>

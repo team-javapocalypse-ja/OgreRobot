@@ -33,5 +33,28 @@ var ViewMaster = {
     addRow : function(title, author, price){
         id = ViewMaster.table.attr("id");
         $("#newTable tr:last").after(ViewMaster.newRow(title, author, price));
-    }  
+    },
+    
+    addCheckBoxList : function(theList, divId){
+        _div = $("#"+divId);
+        theList.forEach(
+            function(category){
+                ViewMaster.addCheckBox(category, _div);
+            }
+        );
+        
+        _div.find('input').click(function(){
+            EBooksCategory.addToProfile($(this).attr('value'));
+        });
+        
+    },
+    //	<input type="checkbox" name="vehicle" value="Bike"> I have a bike<br>
+    addCheckBox : function(category, where){
+        _checkbox = "\<input type='checkbox' "
+            +"name='"+category+"' value='"+category+"' >" 
+            +" " + category;
+        where.append(_checkbox);
+    }
+    
+    
 };

@@ -1,7 +1,10 @@
 var EBooksCategory = {
-    art: "art",
-    education: "education",
-    games: "games",
-    law : "law",
-    pets: "pets"
+    
+    categoryList : ["art", "games", "education"],
+    
+    profile : [],
+    
+    addToProfile : function(category){
+        EBooksCategory.profile.push(category);
+    }
 }
