@@ -22,7 +22,6 @@ class CategoryPageParser {
                 .map(Optional::get)
                 .flatMap(this::extractBookBoxes)
                 .map(this::extractBookPageUrl)
-                .map(EmpikUrlResolver::resolveUrl)
                 .collect(Collectors.toList());
 
         return bookPageUrls;
@@ -33,7 +32,7 @@ class CategoryPageParser {
     }
 
     private String extractBookPageUrl(Element element) {
-        return element.getElementsByTag("a").first().attr("href");
+        return element.getElementsByTag("a").first().absUrl("href");
     }
 
 }

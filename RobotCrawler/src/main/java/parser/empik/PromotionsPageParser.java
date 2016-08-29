@@ -26,14 +26,13 @@ class PromotionsPageParser {
 
         List<String> categoryPageUrls = promotionsPage.get().getElementsByClass("contentPacket").parallelStream()
                 .map(this::extractCategoryPageUrl)
-                .map(EmpikUrlResolver::resolveUrl)
                 .collect(Collectors.toList());
 
         return categoryPageUrls;
     }
 
     private String extractCategoryPageUrl(Element element) {
-        return element.getElementsByClass("boxesHeaderLink").first().attr("href");
+        return element.getElementsByClass("boxesHeaderLink").first().absUrl("href");
     }
 
 }
