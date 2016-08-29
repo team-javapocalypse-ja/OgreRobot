@@ -23,8 +23,8 @@ var ViewMaster = {
     newRow : function(title, author, price){
         return    "\<tr>" // without \ it will be print a NaN, no idea why
                     +"<td>"+title+"</td>" 
-                    +"<td>"+title+"</td>" 
-                    +"<td>"+title+"</td>" 
+                    +"<td>"+author+"</td>" 
+                    +"<td>"+price+"</td>" 
                 + "</tr>";
     },
     addrowFromBookData : function(data){

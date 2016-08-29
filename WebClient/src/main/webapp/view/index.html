@@ -23,9 +23,9 @@
 <body>
 
     <button id="theButton">Search for art on ebooks.com</button>
-    
-    
-    
+
+
+
     <div id="checkbox-area"></div>
     <div id="book-area"></div>
     
@@ -36,9 +36,9 @@
         $("#theButton").click(function(){
             RequestMaster.sendRequest(RequestMaster.setData(EBooksCategory.profile), Executable.bookDataListExecutable);
         });
-        
+
         ViewMaster.addCheckBoxList(EBooksCategory.categoryList, "checkbox-area");
-        
+
     </script>
 </body>
 </html>

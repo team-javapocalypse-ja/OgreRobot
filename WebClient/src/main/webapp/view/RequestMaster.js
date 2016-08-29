@@ -11,7 +11,9 @@ var RequestMaster = {
         $.ajax({
             method: "GET",
             url : "/service/home",
-            data: data_in,
+            data: {
+                "category":data_in
+            },
             success: function(data){
                 RequestMaster.data = data;
                 executable.execute(data);
@@ -19,9 +21,11 @@ var RequestMaster = {
         });
     },
     
-    setData : function(category){
-        return {
-            "category":category
-        }
+    setData : function(categories){
+        data = "";
+        categories.forEach(function(category){
+            data +=","+category;
+        });
+        return data.substring(1);
     }
 };
