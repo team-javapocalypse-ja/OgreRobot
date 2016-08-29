@@ -46,6 +46,6 @@ public class EBooksRobotManager {
     }
 
     public EnumMap<EBookCategory, List<BookData>> getOffers(){
-        return tasks;
+        return tasks.clone();
     }
 }

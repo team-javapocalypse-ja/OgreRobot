@@ -2,8 +2,13 @@ var Executable = {
     
     bookDataListExecutable : {
         execute : function(data){
-            data.forEach(function(element){
-                ViewMaster.addrowFromBookData(element);          
+            Object.keys(data).forEach(function(key){
+                offers = data[key];
+                if(isNaN(offers)){
+                    offers.forEach(function(element){
+                        ViewMaster.addrowFromBookData(element);          
+                    });
+                }
             });
         }    
     }

@@ -9,6 +9,7 @@ import parser.ebookscom.EBookCategory;
 import robot.ebooks.EBooksRobotManager;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by ehsan on 26.08.16.
@@ -17,12 +18,12 @@ import java.util.List;
 public class HelloWorld {
     protected EBooksRobotManager robot = new EBooksRobotManager();
     @RequestMapping(method = RequestMethod.GET, path = "/home")
-    public List<BookData> getData(@RequestParam(name = "category")List<EBookCategory> categories){
+    public Map<EBookCategory, List<BookData>> getData(@RequestParam(name = "category")List<EBookCategory> categories){
         categories.forEach(category -> robot.INeed(category));
 
         robot.startLookingForOffers();
 
-        return robot.getOffers().get(categories.get(0));
+        return robot.getOffers();
     }
 
 }
