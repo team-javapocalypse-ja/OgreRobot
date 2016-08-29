@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-class PromotionsPageParser {
+public class PromotionsPageParser {
 
     private static final String EMPIK_PROMOTIONS_PAGE_URL = "http://www.empik.com/ebooki/promocje";
 

@@ -7,7 +7,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-class CategoryPageParser {
+public class CategoryPageParser {
 
     private final PageDownloader pageDownloader;
 

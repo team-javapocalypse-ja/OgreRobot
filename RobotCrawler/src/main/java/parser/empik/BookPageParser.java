@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-class BookPageParser {
+public class BookPageParser {
 
     private final PageDownloader pageDownloader;
 

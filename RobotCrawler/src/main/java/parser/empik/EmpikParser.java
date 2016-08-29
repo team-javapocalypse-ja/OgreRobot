@@ -6,17 +6,20 @@ import java.util.List;
 
 public class EmpikParser {
 
-    private final PageDownloader pageDownloader;
+    private final PromotionsPageParser promotionsPageParser;
+    private final CategoryPageParser categoryPageParser;
+    private final BookPageParser bookPageParser;
 
-    public EmpikParser(PageDownloader pageDownloader) {
-        this.pageDownloader = pageDownloader;
+    public EmpikParser(
+            PromotionsPageParser promotionsPageParser,
+            CategoryPageParser categoryPageParser,
+            BookPageParser bookPageParser) {
+        this.promotionsPageParser = promotionsPageParser;
+        this.categoryPageParser = categoryPageParser;
+        this.bookPageParser = bookPageParser;
     }
 
     public List<BookData> parse() {
-        PromotionsPageParser promotionsPageParser = new PromotionsPageParser(pageDownloader);
-        CategoryPageParser categoryPageParser = new CategoryPageParser(pageDownloader);
-        BookPageParser bookPageParser = new BookPageParser(pageDownloader);
-
         List<String> categoryPageUrls = promotionsPageParser.extractCategoryPageUrls();
         List<String> bookPageUrls = categoryPageParser.extractBookPageUrls(categoryPageUrls);
         return bookPageParser.extractBooks(bookPageUrls);
