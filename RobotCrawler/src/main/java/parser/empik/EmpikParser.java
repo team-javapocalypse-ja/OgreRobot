@@ -1,6 +1,6 @@
 package parser.empik;
 
-import model.BookData;
+import javapocalypse.model.BookData;
 
 import java.awt.print.Book;
 import java.util.*;
