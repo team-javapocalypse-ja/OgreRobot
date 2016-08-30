@@ -32,6 +32,7 @@
         <log4j.version>2.6.2</log4j.version>
         <lombok.version>1.16.10</lombok.version>
         <jsoup.version>1.9.2</jsoup.version>
+        <spring.version>4.3.2.RELEASE</spring.version>
 
         <!-- plugin properties -->
         <site.plugin.version>3.5.1</site.plugin.version>
@@ -102,6 +103,13 @@
             <artifactId>log4j-core</artifactId>
             <version>${log4j.version}</version>
             <scope>compile</scope>
+        </dependency>
+
+        <!-- spring dependencies -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
         </dependency>
 
         <!-- commons dependencies -->
