@@ -1,0 +1,11 @@
+# Spring Properties
+spring:
+  application:
+     name: web-app  # Service registers under this name
+  freemarker:
+    enabled: false      # Ignore Eureka dashboard FreeMarker templates
+  thymeleaf:
+    cache: false        # Allow Thymeleaf templates to be reloaded at runtime
+    prefix: classpath:/static/
+server:
+  port: 1234   # HTTP (Tomcat) port

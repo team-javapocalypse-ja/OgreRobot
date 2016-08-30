@@ -1,8 +1,8 @@
 package robot.ebooks;
 
+import model.EBookCategory;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import parser.ebookscom.EBookCategory;
 
 public class EBooksRobotManagerTest {
 

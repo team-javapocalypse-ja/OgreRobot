@@ -1,4 +1,4 @@
-package parser.ebookscom;
+package model;
 
 /**
  * Created by egolesor on 28.08.16.

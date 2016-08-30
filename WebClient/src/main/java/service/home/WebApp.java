@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class WebApp {
     public static void main(String ... args){
 
-        System.setProperty("spring.config.name", "registration-server");
+        System.setProperty("spring.config.name", "webapp-server");
         SpringApplication.run(WebApp.class, args);
 
     }

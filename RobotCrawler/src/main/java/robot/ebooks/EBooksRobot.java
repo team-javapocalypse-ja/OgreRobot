@@ -1,20 +1,18 @@
 package robot.ebooks;
 
 import model.BookData;
+import model.EBookCategory;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import parser.DocumentBuilder;
 import parser.Parser;
 import parser.ebookscom.BookDataFactory;
-import parser.ebookscom.EBookCategory;
 import parser.ebookscom.EBooksDataCollector;
 import parser.ebookscom.EBooksParser;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
-import java.util.concurrent.TimeUnit;
 
 public class EBooksRobot implements Callable<List<BookData>> {
 

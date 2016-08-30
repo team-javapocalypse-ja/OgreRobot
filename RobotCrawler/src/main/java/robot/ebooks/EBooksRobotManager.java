@@ -1,8 +1,8 @@
 package robot.ebooks;
 
 import model.BookData;
+import model.EBookCategory;
 import org.springframework.stereotype.Component;
-import parser.ebookscom.EBookCategory;
 
 import java.util.*;
 import java.util.concurrent.*;
