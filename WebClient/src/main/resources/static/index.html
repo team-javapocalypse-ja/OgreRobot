@@ -2,10 +2,10 @@
 <html>
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="/view/ViewMaster.js"></script>
-    <script src="/view/RequestMaster.js"></script>
-    <script src="/view/Executable.js"></script>
-    <script src="/view/EBooksCategory.js"></script>
+    <script src="/ViewMaster.js"></script>
+    <script src="/RequestMaster.js"></script>
+    <script src="/Executable.js"></script>
+    <script src="/EBooksCategory.js"></script>
 </head>
 
 <style>
@@ -34,12 +34,12 @@
         initPage();
         $("#theButton").click(function(){
             // adding the checked List
-            prepareCheckBoxLis();
+            prepareCheckBoxList();
             ViewMaster.newTable("book-area");
             RequestMaster.sendRequest(RequestMaster.setData(EBooksCategory.profile), Executable.bookDataListExecutable);
         });
         
-        function prepareCheckBoxLis(){
+        function prepareCheckBoxList(){
             EBooksCategory.resetList();
             
             $("#checkbox-area input").each(function(){

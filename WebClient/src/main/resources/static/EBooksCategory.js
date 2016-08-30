@@ -1,6 +1,6 @@
 var EBooksCategory = {
     
-    categoryList : ["art", "games", "education", "pets", "law"],
+    categoryList : ["art", "games", "education", "pets", "law", "computers"],
     
     profile : [],
     
