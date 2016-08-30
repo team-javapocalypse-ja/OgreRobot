@@ -1,4 +1,4 @@
-package model;
+package javapocalypse.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

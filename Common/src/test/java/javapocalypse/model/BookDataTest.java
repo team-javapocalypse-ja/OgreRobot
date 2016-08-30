@@ -1,4 +1,4 @@
-package model;
+package javapocalypse.model;
 
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;

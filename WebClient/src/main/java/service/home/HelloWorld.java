@@ -1,6 +1,6 @@
 package service.home;
 
-import model.BookData;
+import javapocalypse.model.BookData;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
