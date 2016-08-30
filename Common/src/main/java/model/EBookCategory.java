@@ -9,9 +9,7 @@ public enum EBookCategory {
     games("games"),
     law("law"),
     pets("pets"),
-    computers("computers"),
-    ai("");
-
+    computers("computers");
     EBookCategory(String categoryName) {
     }
 }
