@@ -1,1 +1,58 @@
-<H1>Hello</H1>
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="/view/ViewMaster.js"></script>
+    <script src="/view/RequestMaster.js"></script>
+    <script src="/view/Executable.js"></script>
+    <script src="/view/EBooksCategory.js"></script>
+</head>
+
+<style>
+
+    #book-area table{
+        width: 100%;
+    }
+    #book-area table tr td{
+        border: 1px solid green;
+
+    }
+
+</style>
+
+<body>
+
+    <button id="theButton">Search for art on ebooks.com</button>
+
+
+
+    <div id="checkbox-area"></div>
+    <div id="book-area"></div>
+    
+    
+    <script>
+        initPage();
+        $("#theButton").click(function(){
+            // adding the checked List
+            prepareCheckBoxLis();
+            ViewMaster.newTable("book-area");
+            RequestMaster.sendRequest(RequestMaster.setData(EBooksCategory.profile), Executable.bookDataListExecutable);
+        });
+        
+        function prepareCheckBoxLis(){
+            EBooksCategory.resetList();
+            
+            $("#checkbox-area input").each(function(){
+                if(this.checked){
+                    EBooksCategory.addToProfile($(this).attr('value'));
+                }
+            });
+        }
+        
+        function initPage(){
+            ViewMaster.addCheckBoxList(EBooksCategory.categoryList, "checkbox-area");
+        }
+        
+    </script>
+</body>
+</html>

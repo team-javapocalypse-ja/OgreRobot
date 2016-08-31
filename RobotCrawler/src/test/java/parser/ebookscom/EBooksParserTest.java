@@ -67,7 +67,6 @@ public class EBooksParserTest {
         assertEquals(offers.size(), 1);
     }
 
-    @Test
     public void testIfDocumentFromTheUrlWorks(){
         final String URL_E_BOOKS_COM = "http://www.ebooks.com/subjects/art";
         // given
