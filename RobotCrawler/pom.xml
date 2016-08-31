@@ -11,6 +11,9 @@
 
     <artifactId>robot-crawler</artifactId>
 
+    <properties>
+        <jsoup.version>1.9.2</jsoup.version>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>ja-javapocalypse</groupId>
