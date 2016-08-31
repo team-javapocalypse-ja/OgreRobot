@@ -4,15 +4,6 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import parser.ebookscom.EBookCategory;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
-/**
- * Created by egolesor on 28.08.16.
- */
 public class EBooksRobotManagerTest {
 
     @Test
