@@ -10,12 +10,13 @@ import org.springframework.web.client.RestTemplate;
 @RequestMapping("/service")
 public class WebAppController {
 
+    RestTemplate restTemplate = new RestTemplate();
+
     @ResponseBody@RequestMapping(method = RequestMethod.GET, path = "/crawler")
     public ResponseBase getData(@RequestParam(name = "category") String categories) {
-        RestTemplate template = new RestTemplate();
-        EBooksResponse responseBase = template.getForObject("http://localhost:1223/robot/find/"+categories, EBooksResponse.class);
+        return
+                restTemplate.getForObject("http://localhost:1223/robot/find/"+categories, EBooksResponse.class);
 
-        return responseBase;
     }
 }
 

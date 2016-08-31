@@ -17,7 +17,7 @@ public class BookData {
      * to build the object after parsing the json
      */
     @JsonCreator
-    public BookData(
+    private BookData(
             @JsonProperty("title") String title,
             @JsonProperty("author") String author,
             @JsonProperty("description") String description,
