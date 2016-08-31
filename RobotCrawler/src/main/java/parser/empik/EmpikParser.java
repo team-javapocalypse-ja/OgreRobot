@@ -28,7 +28,7 @@ public class EmpikParser {
         List<String> bookPageUrls = categoryPageParser.extractBookPageUrls(categoryPageUrls);
         List<BookData> booksData = bookPageParser.extractBooks(bookPageUrls);
 
-        return booksData.stream().collect(Collector.of(HashMap::new, (map, e) -> {
+        return booksData.parallelStream().collect(Collector.of(HashMap::new, (map, e) -> {
             if (!map.containsKey(e.tag)) {
                 map.put(e.tag, new ArrayList<>());
             }
