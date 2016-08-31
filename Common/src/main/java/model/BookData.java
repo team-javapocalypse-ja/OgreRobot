@@ -37,12 +37,12 @@ public class BookData {
 
     }
 
-    public String title;
-    public String author;
-    public String description;
-    public String price;
-    public String library;
-    public String tag;
-    public String url;
+    public final String title;
+    public final String author;
+    public final String description;
+    public final String price;
+    public final String library;
+    public final String tag;
+    public final String url;
 
 }

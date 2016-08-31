@@ -1,20 +1,21 @@
 package model;
 
 public enum EBookCategory {
-    art("art"),
-    education("education"),
-    games("games"),
-    law("law"),
-    pets("pets"),
-    computers("computers");
+    ART("art"),
+    EDUCATION("education"),
+    GAMES("games"),
+    LAW("law"),
+    PETS("pets"),
+    COMPUTERS("computers");
 
     final private String name;
+
+    EBookCategory(String categoryName) {
+        name = categoryName;
+    }
 
     public String nameStr(){
         return name;
     }
 
-    EBookCategory(String categoryName) {
-        name = categoryName;
-    }
 }

@@ -36,7 +36,7 @@ public class WebAppControllerTest {
         List<BookData> bookDataList = new LinkedList<>();
         bookDataList.add(bookData);
 
-        retMap.put(EBookCategory.art, bookDataList);
+        retMap.put(EBookCategory.ART, bookDataList);
 
         response.setResult(retMap);
         when(webAppController.restTemplate.getForObject(anyString(), any()))
