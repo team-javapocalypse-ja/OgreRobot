@@ -16,10 +16,9 @@ import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 
-/**
- * Created by egolesor on 28.08.16.
- */
 public class EBooksRobot implements Callable<List<BookData>> {
+
+    private static final String LIBRARY_CATEGORY_URL = "http://www.ebooks.com/subjects/";
 
     public final EBookCategory category;
 
@@ -39,7 +38,7 @@ public class EBooksRobot implements Callable<List<BookData>> {
         try {
             Document document = DocumentBuilder
                     .builder()
-                    .urlPath("http://www.ebooks.com/subjects/" + category.toString())
+                    .urlPath(LIBRARY_CATEGORY_URL.concat(category.toString()))
                     .build()
                     .buildFromUrl();
 

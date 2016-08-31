@@ -1,14 +1,13 @@
 package robot.ebooks;
 
 import model.BookData;
+import org.springframework.stereotype.Component;
 import parser.ebookscom.EBookCategory;
 
 import java.util.*;
 import java.util.concurrent.*;
 
-/**
- * Created by egolesor on 28.08.16.
- */
+@Component("ebooks-robot-manager")
 public class EBooksRobotManager {
 
     private EnumMap<EBookCategory, List<BookData>> tasks =
@@ -34,7 +33,6 @@ public class EBooksRobotManager {
 
         // execute all callables
         try {
-            // List<Future<List<model.BookData>>>
             service.invokeAll(callableList);//.stream().map(r->r.);
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -43,6 +41,7 @@ public class EBooksRobotManager {
         callableList.forEach(eBooksRobot ->
                 tasks.put(eBooksRobot.category, eBooksRobot.theList));
 
+        // TODO zapis do bazy
     }
 
     public EnumMap<EBookCategory, List<BookData>> getOffers(){
