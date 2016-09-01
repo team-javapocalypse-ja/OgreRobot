@@ -2,14 +2,16 @@ package model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jdk.nashorn.internal.ir.annotations.Immutable;
 import lombok.Builder;
 import lombok.ToString;
 
 /**
- * Class responsible to build the data of books that we need
+ * Data structure of book data
  */
 @Builder
 @ToString
+@Immutable
 public class BookData {
 
     /**
