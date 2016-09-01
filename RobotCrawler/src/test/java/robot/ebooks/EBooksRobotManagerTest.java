@@ -10,21 +10,21 @@ public class EBooksRobotManagerTest {
     public void fillingTheCategoryListToFind(){
         EBooksRobotManager robot = new EBooksRobotManager();
 
-        robot.INeed(EBookCategory.ART);
-        robot.INeed(EBookCategory.GAMES);
-        robot.INeed(EBookCategory.PETS);
+        robot.INeed(EBookCategory.art);
+        robot.INeed(EBookCategory.games);
+        robot.INeed(EBookCategory.pets);
 
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(robot.hasToFind(EBookCategory.ART));
-        softAssert.assertTrue(robot.hasToFind(EBookCategory.GAMES));
-        softAssert.assertTrue(robot.hasToFind(EBookCategory.PETS));
+        softAssert.assertTrue(robot.hasToFind(EBookCategory.art));
+        softAssert.assertTrue(robot.hasToFind(EBookCategory.games));
+        softAssert.assertTrue(robot.hasToFind(EBookCategory.pets));
     }
 
     @Test
     public void testIfFindOffersAndNotThrowException(){
         EBooksRobotManager robot = new EBooksRobotManager();
-        robot.INeed(EBookCategory.ART);
-        robot.INeed(EBookCategory.EDUCATION);
+        robot.INeed(EBookCategory.art);
+        robot.INeed(EBookCategory.education);
         robot.startLookingForOffers();
         robot.getOffers();
     }

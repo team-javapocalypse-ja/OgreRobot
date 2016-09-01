@@ -33,7 +33,7 @@ public class EBooksRobotManager {
 
         // execute all callables
         try {
-            service.invokeAll(callableList);//.stream().map(r->r.);
+            service.invokeAll(callableList);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

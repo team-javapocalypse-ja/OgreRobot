@@ -1,12 +1,12 @@
 package model;
 
 public enum EBookCategory {
-    ART("art"),
-    EDUCATION("education"),
-    GAMES("games"),
-    LAW("law"),
-    PETS("pets"),
-    COMPUTERS("computers");
+    art("art"),
+    education("education"),
+    games("games"),
+    law("law"),
+    pets("pets"),
+    computers("computers");
 
     final private String name;
 
