@@ -14,7 +14,8 @@ public enum EBookCategory {
         name = categoryName;
     }
 
-    public String nameStr(){
+    @Override
+    public String toString(){
         return name;
     }
 
