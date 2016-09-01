@@ -15,15 +15,13 @@
         <dependency>
             <groupId>ja-javapocalypse</groupId>
             <artifactId>common</artifactId>
-            <version>1.0</version>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 
     <properties>
         <webapp-runner.version>8.0.33.1</webapp-runner.version>
         <servlet-api.version>2.5</servlet-api.version>
-        <!--<spring-core.version>4.3.2.RELEASE</spring-core.version>
-        <spring-web.version>4.3.2.RELEASE</spring-web.version>-->
         <runnable.version>2.3</runnable.version>
     </properties>
 
