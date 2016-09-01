@@ -2,6 +2,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <properties>
+        <webapp-runner.version>8.0.33.1</webapp-runner.version>
+        <servlet-api.version>2.5</servlet-api.version>
+        <runnable.version>2.3</runnable.version>
+    </properties>
+
     <parent>
         <artifactId>robot</artifactId>
         <groupId>ja-javapocalypse</groupId>
@@ -10,7 +17,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <artifactId>web-client</artifactId>
-    <packaging>war</packaging>
+
     <dependencies>
         <dependency>
             <groupId>ja-javapocalypse</groupId>
@@ -18,11 +25,5 @@
             <version>${project.version}</version>
         </dependency>
     </dependencies>
-
-    <properties>
-        <webapp-runner.version>8.0.33.1</webapp-runner.version>
-        <servlet-api.version>2.5</servlet-api.version>
-        <runnable.version>2.3</runnable.version>
-    </properties>
 
 </project>

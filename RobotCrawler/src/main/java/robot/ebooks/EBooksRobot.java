@@ -14,6 +14,12 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.Callable;
 
+/**
+ * The robot is looking for books per category.
+ * I need to call more than one robot in parallel to tell them
+ * find books for specified category. And I need to know what they found.
+ * That's why I implement the {@link Callable}
+ */
 public class EBooksRobot implements Callable<List<BookData>> {
 
     private static final String LIBRARY_CATEGORY_URL = "http://www.ebooks.com/subjects/";

@@ -1,5 +1,6 @@
 package robot.ebooks;
 
+import lombok.extern.log4j.Log4j2;
 import model.BookData;
 import model.EBookCategory;
 import org.springframework.stereotype.Component;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.*;
 import java.util.concurrent.*;
 
+@Log4j2
 @Component("ebooks-robot-manager")
 public class EBooksRobotManager {
 
@@ -34,12 +36,14 @@ public class EBooksRobotManager {
         // execute all callables
         try {
             service.invokeAll(callableList);
+            service.shutdownNow();
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            log.error(e);
         }
 
         callableList.forEach(eBooksRobot ->
                 tasks.put(eBooksRobot.category, eBooksRobot.theList));
+
 
         // TODO zapis do bazy
     }

@@ -33,7 +33,6 @@
     <script>
         initPage();
         $("#theButton").click(function(){
-            // adding the checked List
             prepareCheckBoxList();
             ViewMaster.newTable("book-area");
             RequestMaster.sendRequest(RequestMaster.setData(EBooksCategory.profile), Executable.bookDataListExecutable);
