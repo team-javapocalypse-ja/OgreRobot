@@ -1,6 +1,7 @@
 package javapocalypse.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,16 +11,17 @@ import java.sql.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "history_searches", schema = "robot")
+@Table(name = "history_searches")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class HistorySearch implements Serializable {
 
     private static final long serialVersionUID = 1247475954814182295L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "history_search_id")
     private int id;
 
