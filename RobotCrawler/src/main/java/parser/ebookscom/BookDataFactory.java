@@ -38,6 +38,7 @@ public class BookDataFactory {
                 .url(bookDataCollector.urlFrom(element))
                 .library(bookDataCollector.libraryFrom(element))
                 .tag(tag)
+                .oldPrice(bookDataCollector.oldPriceFrom(element))
                 .build();
     }
 
