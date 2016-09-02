@@ -19,7 +19,7 @@ public class CategoryPageParserTest {
         // given
         PageDownloader pageDownloaderMock = mock(PageDownloader.class);
         when(pageDownloaderMock.downloadPage(isA(String.class)))
-                .thenReturn(Optional.of(ParserUtils.readHtmlFile("http://empik.com", "empik/category-page.html")));
+                .thenReturn(ParserUtils.readHtmlFile("http://empik.com", "empik/category-page.html"));
 
         CategoryPageParser categoryPageParser = new CategoryPageParser(pageDownloaderMock);
 

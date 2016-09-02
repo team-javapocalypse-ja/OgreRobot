@@ -17,12 +17,12 @@ import static org.mockito.Mockito.when;
 public class BookPageParserTest {
 
     @Test
-    public void extractBooks() throws Exception {
+    public void extractBooks() {
         // given
         PageDownloader pageDownloaderMock = mock(PageDownloader.class);
         when(pageDownloaderMock.downloadPage(isA(String.class))).thenReturn(
-                Optional.of(ParserUtils.readHtmlFile("http://www.empik.com/uwiklanie-miloszewski-zygmunt,p1046125476,ebooki-i-mp3-p", "empik/book-page-1.html")),
-                Optional.of(ParserUtils.readHtmlFile("http://www.empik.com/gniew-miloszewski-zygmunt,p1102035963,ebooki-i-mp3-p", "empik/book-page-2.html"))
+                ParserUtils.readHtmlFile("http://www.empik.com/uwiklanie-miloszewski-zygmunt,p1046125476,ebooki-i-mp3-p", "empik/book-page-1.html"),
+                ParserUtils.readHtmlFile("http://www.empik.com/gniew-miloszewski-zygmunt,p1102035963,ebooki-i-mp3-p", "empik/book-page-2.html")
         );
 
         BookPageParser bookPageParser = new BookPageParser(pageDownloaderMock);

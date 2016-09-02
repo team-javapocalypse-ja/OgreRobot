@@ -25,8 +25,7 @@ public class PromotionsPageParserTest {
         // given
         PageDownloader pageDownloaderMock = mock(PageDownloader.class);
         when(pageDownloaderMock.downloadPage(isA(String.class)))
-                .thenReturn(Optional.of(ParserUtils.readHtmlFile("http://www.empik.com/", "empik/promotions-page.html"))
-        );
+                .thenReturn(ParserUtils.readHtmlFile("http://www.empik.com/", "empik/promotions-page.html"));
 
         PromotionsPageParser promotionsPageParser = new PromotionsPageParser(pageDownloaderMock);
 
