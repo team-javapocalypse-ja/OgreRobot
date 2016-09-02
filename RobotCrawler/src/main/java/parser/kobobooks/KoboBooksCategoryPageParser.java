@@ -7,11 +7,11 @@ import org.jsoup.select.Elements;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class FreeBooksCategoryPageParser {
+public class KoboBooksCategoryPageParser {
 
     private KoboPageDownloader koboPageDownloader;
 
-    public FreeBooksCategoryPageParser(KoboPageDownloader koboPageDownloader) {
+    public KoboBooksCategoryPageParser(KoboPageDownloader koboPageDownloader) {
         this.koboPageDownloader = koboPageDownloader;
     }
 
