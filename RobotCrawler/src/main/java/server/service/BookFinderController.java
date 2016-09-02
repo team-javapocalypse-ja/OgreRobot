@@ -15,17 +15,16 @@ import java.util.EnumMap;
 import java.util.List;
 
 @RestController
-@RequestMapping("/robot")
+@RequestMapping("/bookstore")
 public class BookFinderController {
 
     @Autowired
-    @Qualifier("ebooks-robot-manager")
     protected EBooksRobotManager robot;
 
-    @RequestMapping(value = "/find/{categories}")
+    @RequestMapping(value = "/offers/{categories}")
     public ResponseBase serve(@PathVariable("categories")List<EBookCategory> categories){
 
-        categories.forEach(category -> robot.addTask(category));
+        categories.forEach(robot::addTask);
 
         robot.startLookingForOffers();
         ResponseBase<EnumMap<EBookCategory, List<BookData>>> response = new EBooksResponse();
