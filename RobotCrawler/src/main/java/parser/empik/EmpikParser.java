@@ -2,11 +2,11 @@ package parser.empik;
 
 import model.BookData;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.awt.print.Book;
+import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class EmpikParser {
 
@@ -26,23 +26,9 @@ public class EmpikParser {
     public Map<String, List<BookData>> parse() {
         List<String> categoryPageUrls = promotionsPageParser.extractCategoryPageUrls();
         List<String> bookPageUrls = categoryPageParser.extractBookPageUrls(categoryPageUrls);
-        List<BookData> booksData = bookPageParser.extractBooks(bookPageUrls);
+        List<BookData> books = bookPageParser.extractBooks(bookPageUrls);
 
-        return booksData.parallelStream().collect(Collector.of(HashMap::new, (map, e) -> {
-            if (!map.containsKey(e.tag)) {
-                map.put(e.tag, new ArrayList<>());
-            }
-
-            map.get(e.tag).add(e);
-        }, (m1, m2) -> {
-            m2.entrySet().stream().forEach(entry -> {
-                if (!m1.containsKey(entry.getKey())) {
-                    m1.put(entry.getKey(), new ArrayList<>());
-                }
-                m1.get(entry.getKey()).addAll(entry.getValue());
-            });
-            return m1;
-        }));
+        return books.stream().collect(Collectors.groupingBy(b -> b.tag));
     }
 
 }
