@@ -1,21 +1,25 @@
 package robot.ebooks;
 
 import model.BookData;
+import model.EBookCategory;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import parser.DocumentBuilder;
 import parser.Parser;
 import parser.ebookscom.BookDataFactory;
-import parser.ebookscom.EBookCategory;
 import parser.ebookscom.EBooksDataCollector;
 import parser.ebookscom.EBooksParser;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
-import java.util.concurrent.TimeUnit;
 
+/**
+ * The robot is looking for books per category.
+ * I need to call more than one robot in parallel to tell them
+ * find books for specified category. And I need to know what they found.
+ * That's why I implement the {@link Callable}
+ */
 public class EBooksRobot implements Callable<List<BookData>> {
 
     private static final String LIBRARY_CATEGORY_URL = "http://www.ebooks.com/subjects/";

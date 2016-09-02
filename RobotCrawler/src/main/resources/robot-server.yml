@@ -1,0 +1,7 @@
+# Spring Properties
+spring:
+  application:
+     name: robot-server # Service registers under this name
+
+server:
+  port: 1223   # HTTP (Tomcat) port

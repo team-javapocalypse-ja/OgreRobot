@@ -67,6 +67,9 @@ public class EBooksParserTest {
         assertEquals(offers.size(), 1);
     }
 
+    /**
+     * This must be run as integration test
+     */
     public void testIfDocumentFromTheUrlWorks(){
         final String URL_E_BOOKS_COM = "http://www.ebooks.com/subjects/art";
         // given

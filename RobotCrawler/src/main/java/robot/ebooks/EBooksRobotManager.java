@@ -1,19 +1,21 @@
 package robot.ebooks;
 
+import lombok.extern.log4j.Log4j2;
 import model.BookData;
+import model.EBookCategory;
 import org.springframework.stereotype.Component;
-import parser.ebookscom.EBookCategory;
 
 import java.util.*;
 import java.util.concurrent.*;
 
+@Log4j2
 @Component("ebooks-robot-manager")
 public class EBooksRobotManager {
 
     private EnumMap<EBookCategory, List<BookData>> tasks =
             new EnumMap<EBookCategory, List<BookData>>(EBookCategory.class);
 
-    public void INeed(EBookCategory category) {
+    public void addTask(EBookCategory category) {
         if(!tasks.containsKey(category)){
             tasks.put(category, new LinkedList<>());
         }
@@ -33,13 +35,15 @@ public class EBooksRobotManager {
 
         // execute all callables
         try {
-            service.invokeAll(callableList);//.stream().map(r->r.);
+            service.invokeAll(callableList);
+            service.shutdownNow();
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            log.error(e.getMessage());
         }
 
         callableList.forEach(eBooksRobot ->
                 tasks.put(eBooksRobot.category, eBooksRobot.theList));
+
 
         // TODO zapis do bazy
     }

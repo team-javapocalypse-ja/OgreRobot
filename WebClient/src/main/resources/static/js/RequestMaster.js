@@ -10,13 +10,13 @@ var RequestMaster = {
     sendRequest : function(data_in, executable){
         $.ajax({
             method: "GET",
-            url : "/service/home",
+            url : "/service/crawler",
             data: {
                 "category":data_in
             },
             success: function(data){
-                RequestMaster.data = data;
-                executable.execute(data);
+                RequestMaster.data = data.result;
+                executable.execute(data.result);
             }
         });
     },

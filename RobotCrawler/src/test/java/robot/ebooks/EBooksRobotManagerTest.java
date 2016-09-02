@@ -1,8 +1,8 @@
 package robot.ebooks;
 
+import model.EBookCategory;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import parser.ebookscom.EBookCategory;
 
 public class EBooksRobotManagerTest {
 
@@ -10,9 +10,9 @@ public class EBooksRobotManagerTest {
     public void fillingTheCategoryListToFind(){
         EBooksRobotManager robot = new EBooksRobotManager();
 
-        robot.INeed(EBookCategory.art);
-        robot.INeed(EBookCategory.games);
-        robot.INeed(EBookCategory.pets);
+        robot.addTask(EBookCategory.art);
+        robot.addTask(EBookCategory.games);
+        robot.addTask(EBookCategory.pets);
 
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(robot.hasToFind(EBookCategory.art));
@@ -23,8 +23,8 @@ public class EBooksRobotManagerTest {
     @Test
     public void testIfFindOffersAndNotThrowException(){
         EBooksRobotManager robot = new EBooksRobotManager();
-        robot.INeed(EBookCategory.art);
-        robot.INeed(EBookCategory.education);
+        robot.addTask(EBookCategory.art);
+        robot.addTask(EBookCategory.education);
         robot.startLookingForOffers();
         robot.getOffers();
     }
