@@ -36,7 +36,6 @@ public class EBooksDataCollector implements BookDataCollector<Element> {
         return element.select("p").text();
     }
 
-    // TODO new price old one
     public String priceFrom(Element element){
         String str1 = element.select(".additional-info span span span").toString();
         return element.select(".additional-info span span")
