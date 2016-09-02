@@ -2,7 +2,11 @@ package parser.empik;
 
 import model.BookData;
 
-import java.util.List;
+import java.awt.print.Book;
+import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class EmpikParser {
 
@@ -19,10 +23,12 @@ public class EmpikParser {
         this.bookPageParser = bookPageParser;
     }
 
-    public List<BookData> parse() {
+    public Map<String, List<BookData>> parse() {
         List<String> categoryPageUrls = promotionsPageParser.extractCategoryPageUrls();
         List<String> bookPageUrls = categoryPageParser.extractBookPageUrls(categoryPageUrls);
-        return bookPageParser.extractBooks(bookPageUrls);
+        List<BookData> books = bookPageParser.extractBooks(bookPageUrls);
+
+        return books.stream().collect(Collectors.groupingBy(b -> b.tag));
     }
 
 }
