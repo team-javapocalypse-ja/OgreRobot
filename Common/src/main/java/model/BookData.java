@@ -24,6 +24,7 @@ public class BookData {
             @JsonProperty("author") String author,
             @JsonProperty("description") String description,
             @JsonProperty("price") String price,
+            @JsonProperty("oldPrice") String oldPrice,
             @JsonProperty("library") String library,
             @JsonProperty("tag") String tag,
             @JsonProperty("url") String url) {
@@ -32,6 +33,7 @@ public class BookData {
         this.author = author;
         this.description = description;
         this.price = price;
+        this.oldPrice = oldPrice;
         this.library = library;
         this.tag = tag;
         this.url = url;
@@ -43,6 +45,7 @@ public class BookData {
     public final String author;
     public final String description;
     public final String price;
+    public final String oldPrice;
     public final String library;
     public final String tag;
     public final String url;

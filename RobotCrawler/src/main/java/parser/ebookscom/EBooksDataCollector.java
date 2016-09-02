@@ -43,4 +43,9 @@ public class EBooksDataCollector implements BookDataCollector<Element> {
                 .replaceAll("<span>","")
                 .replace("</span>","").trim();
     }
+
+    @Override
+    public String oldPriceFrom(Element element) {
+        return element.select(".additional-info span span span").text();
+    }
 }

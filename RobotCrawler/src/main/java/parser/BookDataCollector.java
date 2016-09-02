@@ -15,6 +15,8 @@ public interface BookDataCollector<T> {
 
     String priceFrom(T element);
 
+    String oldPriceFrom(T element);
+
     String urlFrom(T element);
 
     String libraryFrom(T element);
