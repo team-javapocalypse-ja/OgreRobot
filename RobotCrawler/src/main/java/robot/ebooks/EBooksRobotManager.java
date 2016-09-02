@@ -15,7 +15,7 @@ public class EBooksRobotManager {
     private EnumMap<EBookCategory, List<BookData>> tasks =
             new EnumMap<EBookCategory, List<BookData>>(EBookCategory.class);
 
-    public void INeed(EBookCategory category) {
+    public void addTask(EBookCategory category) {
         if(!tasks.containsKey(category)){
             tasks.put(category, new LinkedList<>());
         }
@@ -38,7 +38,7 @@ public class EBooksRobotManager {
             service.invokeAll(callableList);
             service.shutdownNow();
         } catch (InterruptedException e) {
-            log.error(e);
+            log.error(e.getMessage());
         }
 
         callableList.forEach(eBooksRobot ->

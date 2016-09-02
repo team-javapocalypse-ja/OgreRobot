@@ -25,7 +25,7 @@ public class BookFinderController {
     @RequestMapping(value = "/find/{categories}")
     public ResponseBase serve(@PathVariable("categories")List<EBookCategory> categories){
 
-        categories.forEach(category -> robot.INeed(category));
+        categories.forEach(category -> robot.addTask(category));
 
         robot.startLookingForOffers();
         ResponseBase<EnumMap<EBookCategory, List<BookData>>> response = new EBooksResponse();
