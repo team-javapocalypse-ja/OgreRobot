@@ -1,6 +1,7 @@
 package parser.kobobooks;
 
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.util.Optional;
@@ -10,13 +11,17 @@ public class KoboBookDataCollector<T extends Document> {
 
     public String titleFrom(T element) {
         return Optional.ofNullable(element.getElementsByClass("item-info"))
-                .map(elements -> elements.tagName("h1").select("h1").last().text())
+                .map(elements -> elements.tagName("h1").select("h1"))
+                .map(Elements::last)
+                .map(Element::text)
                 .orElse(null);
     }
 
     public String authorFrom(T element) {
         return Optional.ofNullable(element.getElementsByClass("item-info"))
-                .map(elements -> elements.tagName("h2").select("h2").last().text())
+                .map(elements -> elements.tagName("h2").select("h2"))
+                .map(Elements::last)
+                .map(Element::text)
                 .orElse(null);
     }
 
@@ -26,7 +31,11 @@ public class KoboBookDataCollector<T extends Document> {
                 .orElse(null);
     }
 
-    public String priceFrom(T element) { return element.getElementsByClass("price-area").text(); }
+    public String priceFrom(T element) {
+        return Optional.ofNullable(element.getElementsByClass("price-area"))
+                .map(Elements::text)
+                .orElse(null);
+    }
 
     public String urlFrom(T element) {
         return Optional.ofNullable(element.getElementsByClass("item-primary-metadata"))
@@ -37,9 +46,9 @@ public class KoboBookDataCollector<T extends Document> {
     public String libraryFrom(T element) { return KOBO_BOOKS; }
 
     public String tagFrom(T element) {
-
-
-        return null;
+        return Optional.ofNullable(element.getElementsByClass("category-rankings"))
+                .map(elements -> element.getElementsByClass("category-rankings").select("meta[property=genre]").attr("content"))
+                .orElse(null);
     }
 
 }
