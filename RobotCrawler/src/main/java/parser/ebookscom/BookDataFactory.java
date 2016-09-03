@@ -2,7 +2,7 @@ package parser.ebookscom;
 
 
 
-import javapocalypse.model.BookData;
+import model.BookData;
 import parser.BookDataCollector;
 
 import java.util.List;

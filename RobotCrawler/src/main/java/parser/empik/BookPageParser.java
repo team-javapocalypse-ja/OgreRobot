@@ -1,6 +1,6 @@
 package parser.empik;
 
-import javapocalypse.model.BookData;
+import model.BookData;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
