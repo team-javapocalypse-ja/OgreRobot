@@ -1,6 +1,6 @@
 package parser.empik;
 
-import model.BookData;
+import javapocalypse.model.BookData;
 import org.assertj.core.api.SoftAssertions;
 import org.testng.annotations.Test;
 import parser.ParserUtils;

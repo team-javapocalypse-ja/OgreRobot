@@ -1,6 +1,6 @@
 package service.home;
 
-import model.response.EBooksResponse;
+import model.response.OffersResponse;
 import model.response.ResponseBase;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +15,7 @@ public class WebAppController {
     @ResponseBody@RequestMapping(method = RequestMethod.GET, path = "/crawler")
     public ResponseBase getData(@RequestParam(name = "category") String categories) {
         return
-                restTemplate.getForObject("http://localhost:1223/robot/find/"+categories, EBooksResponse.class);
+                restTemplate.getForObject("http://localhost:1223/robot/find/"+categories, OffersResponse.class);
 
     }
 }

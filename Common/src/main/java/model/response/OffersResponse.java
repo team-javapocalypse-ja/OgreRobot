@@ -1,12 +1,12 @@
 package model.response;
 
-import model.BookData;
+import javapocalypse.model.BookData;
 import model.EBookCategory;
 
 import java.util.EnumMap;
 import java.util.List;
 
-public class EBooksResponse implements ResponseBase<EnumMap<EBookCategory, List<BookData>>>{
+public class OffersResponse implements ResponseBase<EnumMap<EBookCategory, List<BookData>>>{
 
     private EnumMap<EBookCategory, List<BookData>> result;
 

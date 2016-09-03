@@ -1,8 +1,8 @@
 package service.home;
 
-import model.BookData;
+import javapocalypse.model.BookData;
 import model.EBookCategory;
-import model.response.EBooksResponse;
+import model.response.OffersResponse;
 import org.springframework.web.client.RestTemplate;
 import org.testng.annotations.Test;
 
@@ -30,7 +30,7 @@ public class WebAppControllerTest {
         webAppController.restTemplate = mock(RestTemplate.class);
 
         BookData bookData = mock(BookData.class);
-        EBooksResponse response = new EBooksResponse();
+        OffersResponse response = new OffersResponse();
 
         EnumMap<EBookCategory, List<BookData>> retMap = new EnumMap<EBookCategory, List<BookData>>(EBookCategory.class);
         List<BookData> bookDataList = new LinkedList<>();
