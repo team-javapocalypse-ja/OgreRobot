@@ -1,6 +1,6 @@
 package robot.ebooks;
 
-import javapocalypse.model.BookData;
+import model.BookData;
 import model.EBookCategory;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;

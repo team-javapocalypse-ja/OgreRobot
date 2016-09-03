@@ -1,6 +1,6 @@
 package parser.empik;
 
-import javapocalypse.model.BookData;
+import model.BookData;
 import org.testng.annotations.Test;
 
 import java.util.Arrays;

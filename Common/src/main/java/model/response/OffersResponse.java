@@ -1,6 +1,6 @@
 package model.response;
 
-import javapocalypse.model.BookData;
+import model.BookData;
 import model.EBookCategory;
 
 import java.util.EnumMap;

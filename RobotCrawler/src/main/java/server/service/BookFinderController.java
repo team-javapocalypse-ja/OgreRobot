@@ -1,7 +1,7 @@
 package server.service;
 
 
-import javapocalypse.model.BookData;
+import model.BookData;
 import model.EBookCategory;
 import model.response.OffersResponse;
 import model.response.ResponseBase;

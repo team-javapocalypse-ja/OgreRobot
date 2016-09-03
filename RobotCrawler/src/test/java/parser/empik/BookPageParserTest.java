@@ -1,13 +1,12 @@
 package parser.empik;
 
-import javapocalypse.model.BookData;
+import model.BookData;
 import org.assertj.core.api.SoftAssertions;
 import org.testng.annotations.Test;
 import parser.ParserUtils;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 import static org.mockito.Matchers.isA;

@@ -1,5 +1,6 @@
 package javapocalypse.model;
 
+import model.BookData;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 

@@ -1,11 +1,8 @@
 package parser.empik;
 
-import javapocalypse.model.BookData;
+import model.BookData;
 
-import java.awt.print.Book;
 import java.util.*;
-import java.util.function.Function;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class EmpikParser {

@@ -1,6 +1,6 @@
 package robot.ebooks;
 
-import javapocalypse.model.BookData;
+import model.BookData;
 import lombok.extern.log4j.Log4j2;
 import model.EBookCategory;
 import org.springframework.stereotype.Component;
