@@ -6,7 +6,7 @@ package model.response;
  * will be able to get the result by getResult
  * @param <T> - the type of the result
  */
-public interface ResponseBase<T> {
+public interface RequestResponseBase<T> {
     void setResult(T data);
     T getResult();
 }

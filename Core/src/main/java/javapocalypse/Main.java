@@ -1,9 +1,9 @@
 package javapocalypse;
 
 import javapocalypse.repositories.AuthorRepository;
-import model.response.BooleanResponse;
-import model.response.OffersResponse;
-import model.response.ResponseBase;
+import model.response.BooleanRequestResponse;
+import model.response.OffersRequestResponse;
+import model.response.RequestResponseBase;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
@@ -24,20 +24,20 @@ public class Main {
     }
 
     @PostMapping(path = "/repo/")
-    public ResponseBase saveOffers(@RequestBody ResponseBase author){
+    public RequestResponseBase saveOffers(@RequestBody RequestResponseBase author){
         // TODO generating the entities
         // TODO save entities into database
         boolean result = true;
 
-        return new BooleanResponse(result);
+        return new BooleanRequestResponse(result);
     }
 
     @PostMapping(path = "/offers/{operation}")
-    public ResponseBase muAutthor(@RequestBody ResponseBase request, @PathVariable("operation") String operation){
+    public RequestResponseBase muAutthor(@RequestBody RequestResponseBase request, @PathVariable("operation") String operation){
         // TODO getting the operation
         // TODO prepare the result
 
-        return new OffersResponse();
+        return new OffersRequestResponse();
     }
 
 }

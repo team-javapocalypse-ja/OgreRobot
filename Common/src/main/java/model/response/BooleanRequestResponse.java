@@ -1,9 +1,9 @@
 package model.response;
 
-public class BooleanResponse implements ResponseBase<Boolean> {
+public class BooleanRequestResponse implements RequestResponseBase<Boolean> {
     private boolean result;
 
-    public BooleanResponse(boolean result) {
+    public BooleanRequestResponse(boolean result) {
         this.result = result;
     }
 

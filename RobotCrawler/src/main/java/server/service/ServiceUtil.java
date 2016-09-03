@@ -1,7 +1,7 @@
 package server.service;
 
-import model.Author;
-import model.response.BooleanResponse;
+import model.response.BooleanRequestResponse;
+import model.response.RequestResponseBase;
 import org.springframework.web.client.RestTemplate;
 
 final class ServiceUtil {
@@ -13,10 +13,10 @@ final class ServiceUtil {
     private ServiceUtil() {
     }
 
-    public static boolean saveAuthor(Author author){
+    public static boolean saveAuthor(RequestResponseBase requestResponseBase){
         return
                 restTemplate.postForObject(
-                        URL_SAVE_BOOK_DATA,author, BooleanResponse.class)
+                        URL_SAVE_BOOK_DATA, requestResponseBase, BooleanRequestResponse.class)
                         .getResult();
     }
 

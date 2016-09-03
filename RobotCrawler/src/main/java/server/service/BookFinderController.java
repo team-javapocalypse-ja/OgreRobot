@@ -3,8 +3,8 @@ package server.service;
 
 import model.BookData;
 import model.EBookCategory;
-import model.response.OffersResponse;
-import model.response.ResponseBase;
+import model.response.OffersRequestResponse;
+import model.response.RequestResponseBase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
@@ -23,12 +23,12 @@ public class BookFinderController {
     protected EBooksRobotManager robot;
 
     @RequestMapping(value = "/find/{categories}")
-    public ResponseBase serve(@PathVariable("categories")List<EBookCategory> categories){
+    public RequestResponseBase serve(@PathVariable("categories")List<EBookCategory> categories){
 
         categories.forEach(category -> robot.addTask(category));
 
         robot.startLookingForOffers();
-        ResponseBase<EnumMap<EBookCategory, List<BookData>>> response = new OffersResponse();
+        RequestResponseBase<EnumMap<EBookCategory, List<BookData>>> response = new OffersRequestResponse();
         response.setResult(robot.getOffers(categories));
         return response;
     }
