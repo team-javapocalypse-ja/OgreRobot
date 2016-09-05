@@ -1,24 +1,32 @@
 package parser.kobobooks;
 
+import model.BookData;
+
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class KoboBooksParser {
 
-    public static final String freeBooksUrl = "/p/free-ebooks";
+    private static final String freeBooksUrl = "/p/free-ebooks";
+    KoboBooksPageParser booksPageParser;
+    KoboBooksCategoryPageParser booksCategoryPageParser;
+    KoboBooksCategoryParser booksCategoryParser;
+    private KoboPageDownloader pageDownloader;
 
-    public static void main(String[] args) {
-        KoboPageDownloader koboPageDownloader = new KoboPageDownloader();
-        KoboBooksPageParser pageParser = new KoboBooksPageParser(koboPageDownloader);
-        KoboBooksCategoryPageParser categoryPageParser = new KoboBooksCategoryPageParser(koboPageDownloader);
-        KoboBooksCategoryParser booksParser = new KoboBooksCategoryParser(koboPageDownloader, new KoboBookDataCollector());
-
-        List<String> categoriesUrls = pageParser.getFreeBooksCategoriesUrls(freeBooksUrl);
-        List<String> booksUrls = categoryPageParser.collectBooksUrls(categoriesUrls.get(0));
-
-        booksParser.collectBookData(booksUrls).stream().forEach(System.out::println);
+    public KoboBooksParser(KoboPageDownloader pageDownloader) {
+        this.pageDownloader = pageDownloader;
+        this.booksPageParser = new KoboBooksPageParser(pageDownloader);
+        this.booksCategoryPageParser = new KoboBooksCategoryPageParser(pageDownloader);
+        this.booksCategoryParser = new KoboBooksCategoryParser(pageDownloader, new KoboBookDataCollector());
     }
 
-    private void parse() {
+    public Map<String, List<BookData>> parse() {
+        List<String> categoriesUrls = booksPageParser.getFreeBooksCategoriesUrls(freeBooksUrl);
+        List<String> booksUrls = booksCategoryPageParser.collectBooksUrls(categoriesUrls.get(0));
 
+        return booksCategoryParser.collectBookData(booksUrls)
+                .parallelStream()
+                .collect(Collectors.groupingBy(b -> b.tag));
     }
 }
