@@ -10,7 +10,7 @@ import java.util.List;
 public class KoboBooksCategoryParser {
 
     KoboPageDownloader koboPageDownloader;
-    KoboBookDataCollector<Document> dataCollector;
+    KoboBookDataCollector dataCollector;
 
 
     public KoboBooksCategoryParser(KoboPageDownloader koboPageDownloader, KoboBookDataCollector dataCollector) {
