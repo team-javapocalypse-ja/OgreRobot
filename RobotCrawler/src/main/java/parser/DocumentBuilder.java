@@ -11,9 +11,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Optional;
 
-@Log4j2
+
 @Builder
 @AllArgsConstructor
+@Log4j2
 public class DocumentBuilder {
 
     private static final String USER_AGENT = "Mozilla";
