@@ -2,6 +2,7 @@ package parser.ebookscom;
 
 
 
+import lombok.extern.log4j.Log4j2;
 import model.BookData;
 import parser.BookDataCollector;
 
@@ -9,8 +10,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Created by ehsan on 25.08.16.
+ * Responsible for creating the list of BookData from any list of type T
+ * by the element's specific {@link BookDataCollector}.
  */
+@Log4j2
 public class BookDataFactory {
     private static BookData.BookDataBuilder builder = BookData.builder();
 
@@ -54,6 +57,7 @@ public class BookDataFactory {
         if(elements==null || bookDataCollector ==null){
             throw new IllegalArgumentException();
         }
+        log.debug("Building from the list".concat(elements.toString()));
         return elements.stream().map(e->
                 prepareBookData(e, bookDataCollector, tag))
                 .filter(e->!e.equals(null))
