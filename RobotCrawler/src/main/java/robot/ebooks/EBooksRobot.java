@@ -54,7 +54,7 @@ public class EBooksRobot implements Callable<List<BookData>> {
                     BookDataFactory.newListBookData(parser.parse(document), new EBooksDataCollector(),category.toString());
             log.debug("Robot[ " + Thread.currentThread().getId() + " ] has the list " + theList);
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error(e.getMessage());
         }
 
         log.debug("Robot[ " + Thread.currentThread().getId() + " ] Finished");
