@@ -15,8 +15,7 @@ public class WebAppController {
     @ResponseBody@RequestMapping(method = RequestMethod.GET, path = "/crawler")
     public ResponseBase getData(@RequestParam(name = "category") String categories) {
         return
-                restTemplate.getForObject("http://localhost:1223/robot/find/"+categories, EBooksResponse.class);
+                restTemplate.getForObject("http://localhost:1223/bookstore/offers/"+categories, EBooksResponse.class);
 
     }
 }
-
