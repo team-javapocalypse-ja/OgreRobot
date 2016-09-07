@@ -1,6 +1,7 @@
 package service.home;
 
 import model.BookData;
+import model.BookTag;
 import model.EBookCategory;
 import model.response.EBooksResponse;
 import org.springframework.web.client.RestTemplate;
@@ -32,11 +33,11 @@ public class WebAppControllerTest {
         BookData bookData = mock(BookData.class);
         EBooksResponse response = new EBooksResponse();
 
-        EnumMap<EBookCategory, List<BookData>> retMap = new EnumMap<EBookCategory, List<BookData>>(EBookCategory.class);
+        EnumMap<BookTag, List<BookData>> retMap = new EnumMap<>(BookTag.class);
         List<BookData> bookDataList = new LinkedList<>();
         bookDataList.add(bookData);
 
-        retMap.put(EBookCategory.art, bookDataList);
+        retMap.put(BookTag.EDUCATIION, bookDataList);
 
         response.setResult(retMap);
         when(webAppController.restTemplate.getForObject(anyString(), any()))
