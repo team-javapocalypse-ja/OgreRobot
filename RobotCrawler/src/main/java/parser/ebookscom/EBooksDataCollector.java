@@ -29,8 +29,8 @@ public class EBooksDataCollector implements BookDataCollector<Element> {
         return element.select(".book-title a").text();
     }
 
-    public String authorFrom(Element element) {
-        return element.select(".author").text();
+    public String authorFrom(Element element){
+        return element.select(".author").text().replace("by","");
     }
 
     public String descriptionFrom(Element element) {

@@ -1,7 +1,6 @@
 package robot.ebooks;
 
 import model.BookData;
-import model.EBookCategory;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import parser.DocumentBuilder;
@@ -9,6 +8,8 @@ import parser.Parser;
 import parser.ebookscom.BookDataFactory;
 import parser.ebookscom.EBooksDataCollector;
 import parser.ebookscom.EBooksParser;
+import model.BookTag;
+import robot.Library;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,12 +25,14 @@ public class EBooksRobot implements Callable<List<BookData>> {
 
     private static final String LIBRARY_CATEGORY_URL = "http://www.ebooks.com/subjects/";
 
-    public final EBookCategory category;
+    public final BookTag category;
+    public final BookTagUtil tagUtil;
 
     List<BookData> theList;
 
-    public EBooksRobot(EBookCategory category) {
+    public EBooksRobot(BookTag category, BookTagUtil tagUtil) {
         this.category = category;
+        this.tagUtil = tagUtil;
     }
 
     @Override
@@ -53,6 +56,10 @@ public class EBooksRobot implements Callable<List<BookData>> {
                 BookDataFactory.newListBookData(parser.parse(documentOptional.get()), new EBooksDataCollector(), category
                         .toString());
 
+    }
+
+    private void startSearch(){
+        tagUtil.tagNamesOf(category, Library.E_BOOKS).forEach(this::searchOne);
     }
 
 }

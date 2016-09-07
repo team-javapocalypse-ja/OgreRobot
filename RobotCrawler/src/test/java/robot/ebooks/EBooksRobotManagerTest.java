@@ -1,16 +1,12 @@
 package robot.ebooks;
 
-import model.EBookCategory;
-import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
-
 public class EBooksRobotManagerTest {
 
-    @Test
-    public void fillingTheCategoryListToFind() {
+    /*@Test
+    public void fillingTheCategoryListToFind(){
         EBooksRobotManager robot = new EBooksRobotManager();
 
-        robot.addTask(EBookCategory.art);
+        robot.addTask(BookTag.);
         robot.addTask(EBookCategory.games);
         robot.addTask(EBookCategory.pets);
 
@@ -21,12 +17,12 @@ public class EBooksRobotManagerTest {
     }
 
     @Test
-    public void testIfFindOffersAndNotThrowException() {
+    public void testIfFindOffersAndNotThrowException(){
         EBooksRobotManager robot = new EBooksRobotManager();
         robot.addTask(EBookCategory.art);
         robot.addTask(EBookCategory.education);
         robot.startLookingForOffers();
         robot.getOffers();
-    }
+    }*/
 
 }
