@@ -37,9 +37,8 @@ public class BookTagUtil implements InitializingBean{
 
     /**
      * To get the specific tag name of {@link BookTag} from the {@link Library}
-     * @param bookTag
-     * @param library
-     * @return
+     * @param bookTag - the tag that you want map on your specific library tag
+     * @return the mapped tags or an empty list if the library is not found
      */
     public List<String> tagNamesOf(BookTag bookTag, Library library){
         log.debug("searching for the tag "
