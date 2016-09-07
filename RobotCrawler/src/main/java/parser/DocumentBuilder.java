@@ -16,9 +16,9 @@ import java.util.Optional;
 @AllArgsConstructor
 public class DocumentBuilder {
 
-    private static Connection.Response login;
     private static final String USER_AGENT = "Mozilla";
     private static final int TIMEOUT = 60000;
+    private static Connection.Response login;
     private File file;
     private String urlPath;
 
@@ -27,14 +27,19 @@ public class DocumentBuilder {
         return Jsoup.parse(file, null);
     }
 
-    public Document buildFromUrl() throws IOException {
-        login();
-        log.error("Retrieving document from site ".concat(urlPath));
-        Document document = Jsoup.connect(urlPath)
-                .cookies(login.cookies())
-                .get();
+    public Optional<Document> buildFromUrl() {
+        Document document = null;
+        try {
+            login();
+            log.error("Retrieving document from site ".concat(urlPath));
+            Jsoup.connect(urlPath)
+                    .cookies(login.cookies())
+                    .get();
+        } catch (IOException e) {
+            log.error("");
+        }
 
-        return Optional.ofNullable(document).orElseThrow(() -> new IOException("Could not get document"));
+        return Optional.ofNullable(document);
     }
 
     private void login() throws IOException {
