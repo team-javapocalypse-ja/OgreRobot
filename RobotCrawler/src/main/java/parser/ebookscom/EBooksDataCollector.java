@@ -9,6 +9,12 @@ import parser.BookDataCollector;
  */
 public class EBooksDataCollector implements BookDataCollector<Element> {
 
+    private final String tag;
+
+    public EBooksDataCollector(String tag) {
+        this.tag = tag;
+    }
+
     private final String LIB_URL = "http://www.ebooks.com/";
 
     public String urlFrom(Element element) {
@@ -22,15 +28,15 @@ public class EBooksDataCollector implements BookDataCollector<Element> {
 
     @Override
     public String tagFrom(Element element) {
-        return null;
+        return tag;
     }
 
     public String titleFrom(Element element) {
         return element.select(".book-title a").text();
     }
 
-    public String authorFrom(Element element) {
-        return element.select(".author").text();
+    public String authorFrom(Element element){
+        return element.select(".author").text().replace("by","");
     }
 
     public String descriptionFrom(Element element) {

@@ -1,7 +1,7 @@
 var EBooksCategory = {
     
-    categoryList : ["art", "games", "education", "pets", "law", "computers"],
-    
+    categoryList : ["ROMANS", "EDUCATION", "CRIMINAL", "SCIENCE", "BIOGRAPHY"],
+
     profile : [],
     
     resetList : function(){

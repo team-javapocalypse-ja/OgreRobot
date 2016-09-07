@@ -32,12 +32,12 @@ public class DocumentBuilder {
         Document document = null;
         try {
             login();
-            log.error("Retrieving document from site ".concat(urlPath));
-            Jsoup.connect(urlPath)
+            log.debug("Retrieving document from site ".concat(urlPath));
+            document = Jsoup.connect(urlPath)
                     .cookies(login.cookies())
                     .get();
         } catch (IOException e) {
-            log.error("Error during establishing connection to ".concat(urlPath));
+            log.error("Error during establishing connection to ".concat(urlPath).concat(" ").concat(e.getMessage()));
         }
 
         return Optional.ofNullable(document);
@@ -47,7 +47,7 @@ public class DocumentBuilder {
         log.debug("Creating connection to site ".concat(urlPath));
         login = Jsoup.connect(urlPath)
                 .userAgent(USER_AGENT)
-                .method(Connection.Method.POST).timeout(TIMEOUT)
+                .method(Connection.Method.GET).timeout(TIMEOUT)
                 .execute();
     }
 }
