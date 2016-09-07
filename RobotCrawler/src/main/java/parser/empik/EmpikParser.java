@@ -2,10 +2,8 @@ package parser.empik;
 
 import model.BookData;
 
-import java.awt.print.Book;
-import java.util.*;
-import java.util.function.Function;
-import java.util.stream.Collector;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class EmpikParser {

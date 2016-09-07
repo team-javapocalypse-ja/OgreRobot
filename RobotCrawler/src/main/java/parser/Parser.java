@@ -8,6 +8,7 @@ import java.util.List;
 public interface Parser<T> {
     /**
      * Parser the document given as parameter
+     *
      * @param document - The document could be build by the {@link DocumentBuilder}
      * @return The parsed document as list type T, after overriding the method,
      * Do not forget to implement the {@link BookDataCollector} for the usage of {@link parser.ebookscom.BookDataFactory}

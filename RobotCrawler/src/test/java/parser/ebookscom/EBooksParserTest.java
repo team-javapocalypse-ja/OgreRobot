@@ -1,5 +1,6 @@
 package parser.ebookscom;
 
+import lombok.extern.log4j.Log4j2;
 import model.BookData;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -16,33 +17,34 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.*;
 
 /**
  * Testing the parser and test how the collector is working, if collect the data properly.
  */
+@Log4j2
 public class EBooksParserTest {
 
     private Document theHtmlFile = null;
     private Parser<Element> parser = new EBooksParser();
     private BookDataCollector getter = new EBooksDataCollector();
+
     @BeforeTest
-    protected void initTest(){
+    protected void initTest() {
         try {
             Path path = Paths.get(getClass().getResource("/parser-ebook-test-1.html").toURI());
             File file = new File(path.toUri());
             theHtmlFile = DocumentBuilder.builder().file(file).build().buildFromFile();
-        } catch (IOException |URISyntaxException e) {
-            // TODO there must be the logger
+        } catch (IOException | URISyntaxException e) {
+            log.error(e.getMessage());
             throw new AssertionError();
         }
     }
 
     @Test
-    public void checkIfParserFindsOneOffersFromFile(){
+    public void checkIfParserFindsOneOffersFromFile() {
 
         // given - theHtmlFile
 
@@ -55,7 +57,7 @@ public class EBooksParserTest {
     }
 
     @Test
-    public void checkIfTheParsedDataCouldConvertToBookData(){
+    public void checkIfTheParsedDataCouldConvertToBookData() {
 
         // given - theHtmlFile
 
@@ -70,24 +72,18 @@ public class EBooksParserTest {
     /**
      * This must be run as integration test
      */
-    public void testIfDocumentFromTheUrlWorks(){
+    public void testIfDocumentFromTheUrlWorks() {
         final String URL_E_BOOKS_COM = "http://www.ebooks.com/subjects/art";
         // given
-        Document documentFromUrl = null;
-        try {
-             documentFromUrl = DocumentBuilder.builder().urlPath(URL_E_BOOKS_COM).build().buildFromUrl();
-        } catch (IOException e) {
-            // TODO there must be the logger
-            assertFalse(true, "this state is invalid and test cannot be passed in this situation");
-        }
+        Optional<Document> documentOptional = DocumentBuilder.builder().urlPath(URL_E_BOOKS_COM).build().buildFromUrl();
 
-        assertFalse(Objects.isNull(documentFromUrl));
+        assertFalse(!documentOptional.isPresent());
 
         // when
-        List<Element> offersUrl = parser.parse(documentFromUrl);
+        List<Element> offersUrl = parser.parse(documentOptional.get());
         List<BookData> bookDataList = BookDataFactory.newListBookData(offersUrl, getter, "art");
-        System.out.println(bookDataList);
-        assertTrue(bookDataList!=null);
+        log.debug(bookDataList.toString());
+        assertTrue(bookDataList != null);
 
     }
 
