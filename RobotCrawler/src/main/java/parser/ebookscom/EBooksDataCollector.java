@@ -29,7 +29,7 @@ public class EBooksDataCollector implements BookDataCollector<Element> {
     }
 
     public String authorFrom(Element element){
-        return element.select(".author").text();
+        return element.select(".author").text().replace("by","");
     }
 
     public String descriptionFrom(Element element){
