@@ -1,4 +1,4 @@
-package robot.ebooks;
+package robot;
 
 import lombok.extern.log4j.Log4j2;
 import model.Library;

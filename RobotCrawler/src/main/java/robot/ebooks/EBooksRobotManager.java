@@ -2,10 +2,10 @@ package robot.ebooks;
 
 import lombok.extern.log4j.Log4j2;
 import model.BookData;
-import model.EBookCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import model.BookTag;
+import robot.BookTagUtil;
 import robot.Robot;
 
 import java.util.ArrayList;
