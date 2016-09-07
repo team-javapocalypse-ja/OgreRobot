@@ -4,7 +4,6 @@ import lombok.extern.log4j.Log4j2;
 import model.BookData;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -17,25 +16,28 @@ public class KoboBooksParser {
     private static final String freeBooksUrl = "/p/free-ebooks";
     PromoPageParser booksPageParser;
     CategoryPageParser booksCategoryPageParser;
-    CategoryParser booksCategoryParser;
+    BookPageParser booksCategoryParser;
 
     public KoboBooksParser() {
         this.booksPageParser = new PromoPageParser();
         this.booksCategoryPageParser = new CategoryPageParser();
-        this.booksCategoryParser = new CategoryParser(new KoboBooksDataCollector());
+        this.booksCategoryParser = new BookPageParser(new KoboBooksDataCollector());
     }
 
     public Map<String, List<BookData>> parse() {
         Map<String, List<BookData>> books = new TreeMap<>();
         try {
             List<String> categoriesUrls = booksPageParser.getPromoCategoriesUrls(baseUrl.concat(freeBooksUrl));
-            List<String> booksUrls = booksCategoryPageParser.collectBooksUrls(categoriesUrls.get(0));
+
+            List<String> booksUrls = booksCategoryPageParser.collectBooksUrls(baseUrl, categoriesUrls);
 
             books = booksCategoryParser.collectBookData(booksUrls)
                     .parallelStream()
                     .collect(Collectors.groupingBy(book -> book.tag));
         } catch (IOException e) {
             log.error("Error during parsing ".concat(e.getMessage()));
+        } catch (Exception e) {
+
         }
         return books;
     }

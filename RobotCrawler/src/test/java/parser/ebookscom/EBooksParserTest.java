@@ -16,6 +16,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
@@ -73,18 +74,12 @@ public class EBooksParserTest {
     public void testIfDocumentFromTheUrlWorks(){
         final String URL_E_BOOKS_COM = "http://www.ebooks.com/subjects/art";
         // given
-        Document documentFromUrl = null;
-        try {
-             documentFromUrl = DocumentBuilder.builder().urlPath(URL_E_BOOKS_COM).build().buildFromUrl();
-        } catch (IOException e) {
-            // TODO there must be the logger
-            assertFalse(true, "this state is invalid and test cannot be passed in this situation");
-        }
+        Optional<Document> documentOptional = DocumentBuilder.builder().urlPath(URL_E_BOOKS_COM).build().buildFromUrl();
 
-        assertFalse(Objects.isNull(documentFromUrl));
+        assertFalse(!documentOptional.isPresent());
 
         // when
-        List<Element> offersUrl = parser.parse(documentFromUrl);
+        List<Element> offersUrl = parser.parse(documentOptional.get());
         List<BookData> bookDataList = BookDataFactory.newListBookData(offersUrl, getter, "art");
         System.out.println(bookDataList);
         assertTrue(bookDataList!=null);

@@ -8,22 +8,27 @@ import parser.DocumentBuilder;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Log4j2
 public class CategoryPageParser {
 
-    private static final String baseUrl = "https://store.kobobooks.com";
-
-    public List<String> collectBooksUrls(String categoryUrl) throws IOException {
-        Document doc = null;
-        log.debug("Start collecting books URLs for category");
-        doc = DocumentBuilder.builder().urlPath(baseUrl.concat(categoryUrl)).build().buildFromUrl();
-
-        return collectAllBooksUrls(doc.getElementsByClass("item-info"));
+    public List<String> collectBooksUrls(String baseUrl, List<String> categoriesUrls) throws IOException {
+        return categoriesUrls.parallelStream()
+                .map(category -> DocumentBuilder.builder().urlPath(baseUrl.concat(category)).build().buildFromUrl())
+                .filter(Optional::isPresent)
+                .flatMap(document -> collectBooksUrlForCategory(document.get()).stream())
+                .collect(Collectors.toList());
     }
 
-    private List<String> collectAllBooksUrls(Elements categoryElements) {
+    private List<String> collectBooksUrlForCategory(Document document) {
+        return extractBookUrl(document.getElementsByClass("item-info"));
+    }
+
+    private List<String> extractBookUrl(Elements categoryElements) {
         return categoryElements.parallelStream().map(element -> element.getElementsByClass("title")
                 .first()
                 .select("a")
