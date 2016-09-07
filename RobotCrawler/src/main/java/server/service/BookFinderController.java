@@ -1,7 +1,6 @@
 package server.service;
 
 import model.BookData;
-import model.EBookCategory;
 import model.response.EBooksResponse;
 import model.response.ResponseBase;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/bookstore")
-
 public class BookFinderController {
 
     @Autowired
@@ -34,11 +32,4 @@ public class BookFinderController {
         response.setResult(robot.getOffers(categories));
         return null;
     }
-
-    @ResponseBody
-    @GetMapping("/kkkk")
-    public EnumMap<BookTag, List<BookData>> kkk(){
-        return robot.getAllOffers();
-    }
-
 }

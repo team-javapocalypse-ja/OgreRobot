@@ -3,9 +3,9 @@ package model;
 public enum BookTag {
 
     ROMANS,
-    EDUCATIION,
+    EDUCATION,
     CRIMINAL,
-    SCIENSE,
+    SCIENCE,
     BIOGRAPHY;
 
 }
