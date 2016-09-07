@@ -10,7 +10,8 @@ import parser.BookDataCollector;
 public class EBooksDataCollector implements BookDataCollector<Element> {
 
     private final String LIB_URL = "http://www.ebooks.com/";
-    public String urlFrom(Element element){
+
+    public String urlFrom(Element element) {
         return element.select(".book-title a").attr("href");
     }
 
@@ -24,24 +25,24 @@ public class EBooksDataCollector implements BookDataCollector<Element> {
         return null;
     }
 
-    public String titleFrom(Element element){
+    public String titleFrom(Element element) {
         return element.select(".book-title a").text();
     }
 
-    public String authorFrom(Element element){
+    public String authorFrom(Element element) {
         return element.select(".author").text();
     }
 
-    public String descriptionFrom(Element element){
+    public String descriptionFrom(Element element) {
         return element.select("p").text();
     }
 
-    public String priceFrom(Element element){
+    public String priceFrom(Element element) {
         String str1 = element.select(".additional-info span span span").toString();
         return element.select(".additional-info span span")
-                .toString().replace(str1,"")
-                .replaceAll("<span>","")
-                .replace("</span>","").trim();
+                .toString().replace(str1, "")
+                .replaceAll("<span>", "")
+                .replace("</span>", "").trim();
     }
 
     @Override

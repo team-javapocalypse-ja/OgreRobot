@@ -5,8 +5,12 @@ import model.BookData;
 import model.EBookCategory;
 import org.springframework.stereotype.Component;
 
-import java.util.*;
-import java.util.concurrent.*;
+import java.util.ArrayList;
+import java.util.EnumMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @Log4j2
 @Component("ebooks-robot-manager")
@@ -16,7 +20,7 @@ public class EBooksRobotManager {
             new EnumMap<EBookCategory, List<BookData>>(EBookCategory.class);
 
     public void addTask(EBookCategory category) {
-        if(!tasks.containsKey(category)){
+        if (!tasks.containsKey(category)) {
             tasks.put(category, new LinkedList<>());
         }
     }
@@ -31,7 +35,7 @@ public class EBooksRobotManager {
 
         // adding the callable
         tasks.forEach((category, bookData) ->
-                callableList.add(new EBooksRobot(category)));
+                              callableList.add(new EBooksRobot(category)));
 
         // execute all callables
         try {
@@ -42,19 +46,19 @@ public class EBooksRobotManager {
         }
 
         callableList.forEach(eBooksRobot ->
-                tasks.put(eBooksRobot.category, eBooksRobot.theList));
+                                     tasks.put(eBooksRobot.category, eBooksRobot.theList));
 
 
         // TODO zapis do bazy
     }
 
-    public EnumMap<EBookCategory, List<BookData>> getOffers(){
+    public EnumMap<EBookCategory, List<BookData>> getOffers() {
         return tasks.clone();
     }
 
-    public EnumMap<EBookCategory, List<BookData>> getOffers(List<EBookCategory> categoriesINeedNow){
+    public EnumMap<EBookCategory, List<BookData>> getOffers(List<EBookCategory> categoriesINeedNow) {
         EnumMap<EBookCategory, List<BookData>> retOffers = new EnumMap<EBookCategory, List<BookData>>(EBookCategory.class);
-        categoriesINeedNow.forEach(key->retOffers.put(key, tasks.get(key)));
+        categoriesINeedNow.forEach(key -> retOffers.put(key, tasks.get(key)));
         return retOffers;
     }
 }

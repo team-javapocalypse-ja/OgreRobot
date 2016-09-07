@@ -7,7 +7,7 @@ import org.testng.asserts.SoftAssert;
 public class EBooksRobotManagerTest {
 
     @Test
-    public void fillingTheCategoryListToFind(){
+    public void fillingTheCategoryListToFind() {
         EBooksRobotManager robot = new EBooksRobotManager();
 
         robot.addTask(EBookCategory.art);
@@ -21,7 +21,7 @@ public class EBooksRobotManagerTest {
     }
 
     @Test
-    public void testIfFindOffersAndNotThrowException(){
+    public void testIfFindOffersAndNotThrowException() {
         EBooksRobotManager robot = new EBooksRobotManager();
         robot.addTask(EBookCategory.art);
         robot.addTask(EBookCategory.education);
