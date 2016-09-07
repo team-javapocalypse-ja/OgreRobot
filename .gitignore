@@ -98,3 +98,7 @@ hs_err_pid*
 
 # Logs
 *.log
+
+#application startup
+acapi-robot
+acapi-web

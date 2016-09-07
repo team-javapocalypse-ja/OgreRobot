@@ -44,6 +44,8 @@
 
         <jacoco.instruction.cover.ratio>0.00</jacoco.instruction.cover.ratio>
         <jacoco.line.cover.ratio>0.00</jacoco.line.cover.ratio>
+
+        <spring.boot.version>1.4.0.RELEASE</spring.boot.version>
     </properties>
 
     <modules>
