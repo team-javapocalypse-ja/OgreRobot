@@ -1,6 +1,6 @@
 var EBooksCategory = {
     
-    categoryList : ["ROMANS", "EDUCATION", "CRIMINAL", "SCIENCE", "BIOGRAPHY"],
+    categoryList : ["EDUCATION", "ROMANS", "CRIMINAL", "BIOGRAPHY", "SCIENCE"],
 
     profile : [],
     

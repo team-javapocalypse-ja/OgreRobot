@@ -6,6 +6,6 @@ public enum BookTag {
     EDUCATION,
     CRIMINAL,
     SCIENCE,
-    BIOGRAPHY
+    BIOGRAPHY;
 
 }
