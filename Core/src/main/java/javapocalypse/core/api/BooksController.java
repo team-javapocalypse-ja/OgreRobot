@@ -4,14 +4,12 @@ import javapocalypse.common.dto.BookDTO;
 import javapocalypse.core.api.mappers.BookMapper;
 import javapocalypse.core.model.entities.Book;
 import javapocalypse.core.model.repositories.BookRepository;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
 import java.util.List;
 
 @RestController
-@EnableAutoConfiguration
 @RequestMapping("/books")
 public class BooksController {
 
@@ -25,13 +23,11 @@ public class BooksController {
     }
 
     @RequestMapping(path = "", method = RequestMethod.GET, produces = "application/json")
-    @ResponseBody
     public List<BookDTO> listBooks() {
         return bookMapper.mapToDTOs(bookRepository.findAll());
     }
 
     @RequestMapping(path = "", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
-    @ResponseBody
     public List<BookDTO> createBooks(@RequestBody List<BookDTO> bookDTOs) {
         List<Book> books = bookMapper.mapToEntities(bookDTOs);
         bookRepository.save(books);
