@@ -18,7 +18,9 @@ public class PromoPageParser {
             return new ArrayList<>();
         }
         Elements elements = documentOptional.get().getElementsByClass("view-all-link");
-        return elements.parallelStream().map(element -> element.childNodes().get(1).attr("href")).collect(Collectors.toList());
+        return elements.parallelStream()
+                .map(element -> element.childNodes().get(1).attr("href"))
+                .collect(Collectors.toList());
     }
 
 

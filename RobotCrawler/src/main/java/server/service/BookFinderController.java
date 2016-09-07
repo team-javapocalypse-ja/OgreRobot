@@ -23,7 +23,7 @@ public class BookFinderController {
     protected EBooksRobotManager robot;
 
     @RequestMapping(value = "/find/{categories}")
-    public ResponseBase serve(@PathVariable("categories")List<EBookCategory> categories){
+    public ResponseBase serve(@PathVariable("categories") List<EBookCategory> categories) {
 
         categories.forEach(category -> robot.addTask(category));
 

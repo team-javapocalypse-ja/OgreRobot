@@ -7,7 +7,6 @@ import parser.ParserUtils;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 import static org.mockito.Matchers.isA;
@@ -39,7 +38,8 @@ public class BookPageParserTest {
         softly1.assertThat(booksData.get(0).library).isEqualTo("Empik");
         softly1.assertThat(booksData.get(0).price).isEqualTo("Current: 21,59 zł, Old: 35,99 zł");
         softly1.assertThat(booksData.get(0).tag).isEqualTo("Kryminał");
-        softly1.assertThat(booksData.get(0).url).isEqualTo("http://www.empik.com/gniew-miloszewski-zygmunt,p1102035963,ebooki-i-mp3-p");
+        softly1.assertThat(booksData.get(0).url)
+                .isEqualTo("http://www.empik.com/gniew-miloszewski-zygmunt,p1102035963,ebooki-i-mp3-p");
         softly1.assertAll();
 
         SoftAssertions softly2 = new SoftAssertions();
@@ -48,7 +48,8 @@ public class BookPageParserTest {
         softly2.assertThat(booksData.get(1).library).isEqualTo("Empik");
         softly2.assertThat(booksData.get(1).price).isEqualTo("Current: 19,19 zł, Old: 31,99 zł");
         softly2.assertThat(booksData.get(1).tag).isEqualTo("Kryminał");
-        softly2.assertThat(booksData.get(1).url).isEqualTo("http://www.empik.com/uwiklanie-miloszewski-zygmunt,p1046125476,ebooki-i-mp3-p");
+        softly2.assertThat(booksData.get(1).url)
+                .isEqualTo("http://www.empik.com/uwiklanie-miloszewski-zygmunt,p1046125476,ebooki-i-mp3-p");
         softly2.assertAll();
     }
 

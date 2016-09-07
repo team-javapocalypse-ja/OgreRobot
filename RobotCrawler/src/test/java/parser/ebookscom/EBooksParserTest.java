@@ -18,9 +18,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.*;
 
 /**
  * Testing the parser and test how the collector is working, if collect the data properly.
@@ -30,20 +28,21 @@ public class EBooksParserTest {
     private Document theHtmlFile = null;
     private Parser<Element> parser = new EBooksParser();
     private BookDataCollector getter = new EBooksDataCollector();
+
     @BeforeTest
-    protected void initTest(){
+    protected void initTest() {
         try {
             Path path = Paths.get(getClass().getResource("/parser-ebook-test-1.html").toURI());
             File file = new File(path.toUri());
             theHtmlFile = DocumentBuilder.builder().file(file).build().buildFromFile();
-        } catch (IOException |URISyntaxException e) {
+        } catch (IOException | URISyntaxException e) {
             // TODO there must be the logger
             throw new AssertionError();
         }
     }
 
     @Test
-    public void checkIfParserFindsOneOffersFromFile(){
+    public void checkIfParserFindsOneOffersFromFile() {
 
         // given - theHtmlFile
 
@@ -56,7 +55,7 @@ public class EBooksParserTest {
     }
 
     @Test
-    public void checkIfTheParsedDataCouldConvertToBookData(){
+    public void checkIfTheParsedDataCouldConvertToBookData() {
 
         // given - theHtmlFile
 
@@ -71,7 +70,7 @@ public class EBooksParserTest {
     /**
      * This must be run as integration test
      */
-    public void testIfDocumentFromTheUrlWorks(){
+    public void testIfDocumentFromTheUrlWorks() {
         final String URL_E_BOOKS_COM = "http://www.ebooks.com/subjects/art";
         // given
         Optional<Document> documentOptional = DocumentBuilder.builder().urlPath(URL_E_BOOKS_COM).build().buildFromUrl();
@@ -82,7 +81,7 @@ public class EBooksParserTest {
         List<Element> offersUrl = parser.parse(documentOptional.get());
         List<BookData> bookDataList = BookDataFactory.newListBookData(offersUrl, getter, "art");
         System.out.println(bookDataList);
-        assertTrue(bookDataList!=null);
+        assertTrue(bookDataList != null);
 
     }
 
