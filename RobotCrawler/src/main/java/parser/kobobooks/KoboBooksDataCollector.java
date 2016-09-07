@@ -7,7 +7,7 @@ import parser.BookDataCollector;
 
 import java.util.Optional;
 
-public class KoboBookDataCollector implements BookDataCollector<Document> {
+public class KoboBooksDataCollector implements BookDataCollector<Document> {
     private static final String KOBO_BOOKS = "kobobooks";
 
     public String titleFrom(Document document) {
