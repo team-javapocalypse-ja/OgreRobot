@@ -29,7 +29,7 @@ public class EBooksRobotManager implements Robot {
         }
     }
 
-    public boolean hasToFind(EBookCategory category) {
+    public boolean hasToFind(BookTag category) {
         return tasks.containsKey(category);
     }
 
