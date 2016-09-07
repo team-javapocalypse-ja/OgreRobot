@@ -17,6 +17,7 @@ public class EBooksRobotManager {
 
     public void addTask(EBookCategory category) {
         if(!tasks.containsKey(category)){
+            log.debug("adding ".concat(category.toString()).concat(" to the task"));
             tasks.put(category, new LinkedList<>());
         }
     }
@@ -30,12 +31,14 @@ public class EBooksRobotManager {
         List<EBooksRobot> callableList = new ArrayList<>();
 
         // adding the callable
+        log.debug(tasks.size() + " Callables will be invoked");
         tasks.forEach((category, bookData) ->
                 callableList.add(new EBooksRobot(category)));
 
         // execute all callables
         try {
             service.invokeAll(callableList);
+            log.debug("callables finished work");
             service.shutdownNow();
         } catch (InterruptedException e) {
             log.error(e.getMessage());
@@ -53,6 +56,7 @@ public class EBooksRobotManager {
     }
 
     public EnumMap<EBookCategory, List<BookData>> getOffers(List<EBookCategory> categoriesINeedNow){
+        log.debug("Getting offers for the categories ".concat(categoriesINeedNow.toString()));
         EnumMap<EBookCategory, List<BookData>> retOffers = new EnumMap<EBookCategory, List<BookData>>(EBookCategory.class);
         categoriesINeedNow.forEach(key->retOffers.put(key, tasks.get(key)));
         return retOffers;
