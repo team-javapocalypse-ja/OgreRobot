@@ -1,22 +1,25 @@
 package parser.kobobooks;
 
 
+import lombok.extern.log4j.Log4j2;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
+import parser.DocumentBuilder;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class KoboBooksCategoryPageParser {
+@Log4j2
+public class CategoryPageParser {
 
-    private KoboPageDownloader koboPageDownloader;
+    private static final String baseUrl = "https://store.kobobooks.com";
 
-    public KoboBooksCategoryPageParser(KoboPageDownloader koboPageDownloader) {
-        this.koboPageDownloader = koboPageDownloader;
-    }
+    public List<String> collectBooksUrls(String categoryUrl) throws IOException {
+        Document doc = null;
+        log.debug("Start collecting books URLs for category");
+        doc = DocumentBuilder.builder().urlPath(baseUrl.concat(categoryUrl)).build().buildFromUrl();
 
-    public List<String> collectBooksUrls(String categoryUrl) {
-        Document doc = koboPageDownloader.getDocument(categoryUrl).get();
         return collectAllBooksUrls(doc.getElementsByClass("item-info"));
     }
 
