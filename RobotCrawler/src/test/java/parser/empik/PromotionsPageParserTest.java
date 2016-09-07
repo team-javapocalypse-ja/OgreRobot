@@ -1,15 +1,8 @@
 package parser.empik;
 
-import com.google.common.base.Charsets;
-import com.google.common.io.Files;
-import org.jsoup.nodes.Document;
 import org.testng.annotations.Test;
 import parser.ParserUtils;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.URI;
-import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
