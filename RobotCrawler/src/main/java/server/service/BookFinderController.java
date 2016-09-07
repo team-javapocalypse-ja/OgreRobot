@@ -30,6 +30,6 @@ public class BookFinderController {
         robot.startLookingForOffers();
         ResponseBase<EnumMap<BookTag, List<BookData>>> response = new EBooksResponse();
         response.setResult(robot.getOffers(categories));
-        return null;
+        return response;
     }
 }

@@ -14,7 +14,7 @@ import java.util.stream.Stream;
 
 @Log4j2
 @Component
-@PropertySource({"classpath:/ebooks.properties", "YOUR_TAGS"})
+@PropertySource({"classpath:/ebooks.properties"})
 public class BookTagUtil implements InitializingBean{
 
     @Autowired
