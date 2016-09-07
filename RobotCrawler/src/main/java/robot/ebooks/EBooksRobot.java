@@ -10,8 +10,8 @@ import parser.ebookscom.BookDataFactory;
 import parser.ebookscom.EBooksDataCollector;
 import parser.ebookscom.EBooksParser;
 
-import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.Callable;
 
 /**
@@ -38,21 +38,21 @@ public class EBooksRobot implements Callable<List<BookData>> {
         return theList;
     }
 
-    private void startSearch(){
-        try {
-            Document document = DocumentBuilder
-                    .builder()
-                    .urlPath(LIBRARY_CATEGORY_URL.concat(category.toString()))
-                    .build()
-                    .buildFromUrl();
-
-            Parser<Element> parser = new EBooksParser();
-            theList =
-                    BookDataFactory.newListBookData(parser.parse(document), new EBooksDataCollector(),category.toString());
-
-        } catch (IOException e) {
-            e.printStackTrace();
+    private void startSearch() {
+        Optional<Document> documentOptional = DocumentBuilder
+                .builder()
+                .urlPath(LIBRARY_CATEGORY_URL.concat(category.toString()))
+                .build()
+                .buildFromUrl();
+        if (!documentOptional.isPresent()) {
+            return;
         }
+
+        Parser<Element> parser = new EBooksParser();
+        theList =
+                BookDataFactory.newListBookData(parser.parse(documentOptional.get()), new EBooksDataCollector(), category
+                        .toString());
+
     }
 
 }

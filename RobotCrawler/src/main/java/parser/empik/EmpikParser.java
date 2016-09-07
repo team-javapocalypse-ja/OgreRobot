@@ -1,6 +1,7 @@
 package parser.empik;
 
 import model.BookData;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.awt.print.Book;
 import java.util.*;
