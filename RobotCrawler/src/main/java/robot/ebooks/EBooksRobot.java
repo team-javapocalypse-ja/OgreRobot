@@ -10,6 +10,8 @@ import parser.ebookscom.BookDataFactory;
 import parser.ebookscom.EBooksDataCollector;
 import parser.ebookscom.EBooksParser;
 import model.BookTag;
+import robot.BookTagUtil;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.Callable;
