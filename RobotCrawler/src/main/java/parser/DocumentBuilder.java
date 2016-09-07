@@ -36,7 +36,7 @@ public class DocumentBuilder {
                     .cookies(login.cookies())
                     .get();
         } catch (IOException e) {
-            log.error("");
+            log.error("Error during establishing connection to ".concat(urlPath));
         }
 
         return Optional.ofNullable(document);

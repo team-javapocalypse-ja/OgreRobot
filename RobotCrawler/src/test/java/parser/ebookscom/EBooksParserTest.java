@@ -1,5 +1,6 @@
 package parser.ebookscom;
 
+import lombok.extern.log4j.Log4j2;
 import model.BookData;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -23,6 +24,7 @@ import static org.testng.Assert.*;
 /**
  * Testing the parser and test how the collector is working, if collect the data properly.
  */
+@Log4j2
 public class EBooksParserTest {
 
     private Document theHtmlFile = null;
@@ -36,7 +38,7 @@ public class EBooksParserTest {
             File file = new File(path.toUri());
             theHtmlFile = DocumentBuilder.builder().file(file).build().buildFromFile();
         } catch (IOException | URISyntaxException e) {
-            // TODO there must be the logger
+            log.error(e.getMessage());
             throw new AssertionError();
         }
     }
@@ -80,7 +82,7 @@ public class EBooksParserTest {
         // when
         List<Element> offersUrl = parser.parse(documentOptional.get());
         List<BookData> bookDataList = BookDataFactory.newListBookData(offersUrl, getter, "art");
-        System.out.println(bookDataList);
+        log.debug(bookDataList.toString());
         assertTrue(bookDataList != null);
 
     }
