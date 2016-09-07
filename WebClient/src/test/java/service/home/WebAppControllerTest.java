@@ -2,7 +2,6 @@ package service.home;
 
 import model.BookData;
 import model.BookTag;
-import model.EBookCategory;
 import model.response.EBooksResponse;
 import org.springframework.web.client.RestTemplate;
 import org.testng.annotations.Test;
@@ -37,7 +36,7 @@ public class WebAppControllerTest {
         List<BookData> bookDataList = new LinkedList<>();
         bookDataList.add(bookData);
 
-        retMap.put(BookTag.EDUCATIION, bookDataList);
+        retMap.put(BookTag.EDUCATION, bookDataList);
 
         response.setResult(retMap);
         when(webAppController.restTemplate.getForObject(anyString(), any()))

@@ -1,20 +1,20 @@
 package robot.ebooks;
 
 import lombok.extern.log4j.Log4j2;
+import model.Library;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 import model.BookTag;
-import robot.Library;
 
 import java.util.*;
 import java.util.stream.Stream;
 
 @Log4j2
 @Component
-@PropertySource("classpath:/ebooks.properties")
+@PropertySource({"classpath:/ebooks.properties", "YOUR_TAGS"})
 public class BookTagUtil implements InitializingBean{
 
     @Autowired
