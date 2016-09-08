@@ -25,7 +25,7 @@ public class BookDataFactory {
      * </li>
      * </ul>
      */
-    private static <T> BookData prepareBookData(T element, BookDataCollector<T> bookDataCollector, String tag) {
+    private static <T> BookData prepareBookData(T element, BookDataCollector<T> bookDataCollector) {
         return builder
                 .title(bookDataCollector.titleFrom(element))
                 .author(bookDataCollector.authorFrom(element))
@@ -33,7 +33,7 @@ public class BookDataFactory {
                 .price(bookDataCollector.priceFrom(element))
                 .url(bookDataCollector.urlFrom(element))
                 .library(bookDataCollector.libraryFrom(element))
-                .tag(tag)
+                .tag(bookDataCollector.tagFrom(element))
                 .oldPrice(bookDataCollector.oldPriceFrom(element))
                 .build();
     }
@@ -43,16 +43,15 @@ public class BookDataFactory {
      *
      * @param elements          - the list of elements that returned parsed by {@link parser.Parser}
      * @param bookDataCollector - the implemented collector for specific {@link parser.Parser}
-     * @param tag               - the list has a tag for example art, IT, music
      * @return {@link List} - List of {@link BookData}, the bookData is collected by specific {@link BookDataCollector}
      */
     public static <T>
-    List<BookData> newListBookData(List<T> elements, BookDataCollector<T> bookDataCollector, String tag) {
+    List<BookData> newListBookData(List<T> elements, BookDataCollector<T> bookDataCollector) {
         if (elements == null || bookDataCollector == null) {
             throw new IllegalArgumentException();
         }
         return elements.stream().map(e ->
-                                             prepareBookData(e, bookDataCollector, tag))
+                                             prepareBookData(e, bookDataCollector))
                 .filter(e -> !e.equals(null))
                 .collect(Collectors.toList());
     }

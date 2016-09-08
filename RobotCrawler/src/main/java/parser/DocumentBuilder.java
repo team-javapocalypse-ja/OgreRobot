@@ -2,6 +2,7 @@ package parser;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+
 import lombok.extern.log4j.Log4j2;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -11,9 +12,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Optional;
 
-@Log4j2
 @Builder
 @AllArgsConstructor
+@Log4j2
 public class DocumentBuilder {
 
     private static final String USER_AGENT = "Mozilla";

@@ -29,7 +29,7 @@ public class EBooksParserTest {
 
     private Document theHtmlFile = null;
     private Parser<Element> parser = new EBooksParser();
-    private BookDataCollector getter = new EBooksDataCollector();
+    private BookDataCollector getter = new EBooksDataCollector("art");
 
     @BeforeTest
     protected void initTest() {
@@ -81,7 +81,7 @@ public class EBooksParserTest {
 
         // when
         List<Element> offersUrl = parser.parse(documentOptional.get());
-        List<BookData> bookDataList = BookDataFactory.newListBookData(offersUrl, getter, "art");
+        List<BookData> bookDataList = BookDataFactory.newListBookData(offersUrl, getter);
         log.debug(bookDataList.toString());
         assertTrue(bookDataList != null);
 
