@@ -2,8 +2,11 @@ package robot.ebooks;
 
 import lombok.extern.log4j.Log4j2;
 import model.BookData;
-import model.EBookCategory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import model.BookTag;
+import robot.BookTagUtil;
+import robot.Robot;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
@@ -14,19 +17,24 @@ import java.util.concurrent.Executors;
 
 @Log4j2
 @Component("ebooks-robot-manager")
-public class EBooksRobotManager {
+public class EBooksRobotManager implements Robot {
 
-    private EnumMap<EBookCategory, List<BookData>> tasks =
-            new EnumMap<EBookCategory, List<BookData>>(EBookCategory.class);
+    @Autowired
+    BookTagUtil bookTagUtil;
 
-    public void addTask(EBookCategory category) {
+    private EnumMap<BookTag, List<BookData>> tasks =
+            new EnumMap<>(BookTag.class);
+
+
+
+    public void addTask(BookTag category) {
         if(!tasks.containsKey(category)){
             log.debug("adding ".concat(category.toString()).concat(" to the task"));
             tasks.put(category, new LinkedList<>());
         }
     }
 
-    public boolean hasToFind(EBookCategory category) {
+    public boolean hasToFind(BookTag category) {
         return tasks.containsKey(category);
     }
 
@@ -37,7 +45,7 @@ public class EBooksRobotManager {
         // adding the callable
         log.debug(tasks.size() + " Callables will be invoked");
         tasks.forEach((category, bookData) ->
-                callableList.add(new EBooksRobot(category)));
+                callableList.add(new EBooksRobot(category, bookTagUtil)));
 
         // execute all callables
         try {
@@ -55,14 +63,23 @@ public class EBooksRobotManager {
         // TODO zapis do bazy
     }
 
-    public EnumMap<EBookCategory, List<BookData>> getOffers(){
+    public EnumMap<BookTag, List<BookData>> getOffers(){
         return tasks.clone();
     }
 
-    public EnumMap<EBookCategory, List<BookData>> getOffers(List<EBookCategory> categoriesINeedNow){
-        log.debug("Getting offers for the categories ".concat(categoriesINeedNow.toString()));
-        EnumMap<EBookCategory, List<BookData>> retOffers = new EnumMap<EBookCategory, List<BookData>>(EBookCategory.class);
+    public EnumMap<BookTag, List<BookData>> getOffers(List<BookTag> categoriesINeedNow){
+
+        EnumMap<BookTag, List<BookData>> retOffers = new EnumMap<>(BookTag.class);
         categoriesINeedNow.forEach(key->retOffers.put(key, tasks.get(key)));
         return retOffers;
     }
+
+    public EnumMap<BookTag, List<BookData>> getAllOffers(){
+
+        bookTagUtil.allTags().forEach(this::addTask);
+        startLookingForOffers();
+
+        return tasks;
+    }
+
 }

@@ -6,7 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan("server.service")
-@ComponentScan({"server.service", "robot.ebooks"})
+@ComponentScan({"server.service", "robot"})
 public class RobotServer {
 
     public static void main(String ... args){
