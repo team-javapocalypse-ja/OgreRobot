@@ -1,6 +1,8 @@
 package parser.ebookscom;
 
 
+
+import lombok.extern.log4j.Log4j2;
 import model.BookData;
 import parser.BookDataCollector;
 
@@ -8,22 +10,27 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Created by ehsan on 25.08.16.
+ * Responsible for creating the list of BookData from any list of type T
+ * by the element's specific {@link BookDataCollector}.
  */
+@Log4j2
 public class BookDataFactory {
     private static BookData.BookDataBuilder builder = BookData.builder();
 
     /**
-     * @param element           - Element Type T
+     *
+     * @param element - Element Type T
      * @param bookDataCollector - Specific {@link BookDataCollector} implemented for type T.
-     * @return <ul>
-     * <li>
-     * {@link BookData} - in valid situation
-     * </li>
-     * <li>
-     * null - Otherwise
-     * </li>
-     * </ul>
+     * @return
+     *          <ul>
+     *              <li>
+     *                  {@link BookData} - in valid situation
+     *              </li>
+     *              <li>
+     *                  null - Otherwise
+     *              </li>
+     *          </ul>
+     *
      */
     private static <T> BookData prepareBookData(T element, BookDataCollector<T> bookDataCollector, String tag) {
         return builder
@@ -39,11 +46,10 @@ public class BookDataFactory {
     }
 
     /**
-     * This method works per tag, if you already have your that is the list of type T you may implement another method.
-     *
-     * @param elements          - the list of elements that returned parsed by {@link parser.Parser}
+     *  This method works per tag, if you already have your that is the list of type T you may implement another method.
+     * @param elements - the list of elements that returned parsed by {@link parser.Parser}
      * @param bookDataCollector - the implemented collector for specific {@link parser.Parser}
-     * @param tag               - the list has a tag for example art, IT, music
+     * @param tag - the list has a tag for example art, IT, music
      * @return {@link List} - List of {@link BookData}, the bookData is collected by specific {@link BookDataCollector}
      */
     public static <T>
@@ -51,9 +57,10 @@ public class BookDataFactory {
         if (elements == null || bookDataCollector == null) {
             throw new IllegalArgumentException();
         }
-        return elements.stream().map(e ->
-                                             prepareBookData(e, bookDataCollector, tag))
-                .filter(e -> !e.equals(null))
+        log.debug("Building from the list".concat(elements.toString()));
+        return elements.stream().map(e->
+                prepareBookData(e, bookDataCollector, tag))
+                .filter(e->!e.equals(null))
                 .collect(Collectors.toList());
     }
 }

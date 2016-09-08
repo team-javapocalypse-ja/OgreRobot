@@ -1,5 +1,6 @@
 package robot.ebooks;
 
+import lombok.extern.log4j.Log4j2;
 import model.BookData;
 import model.EBookCategory;
 import org.jsoup.nodes.Document;
@@ -20,6 +21,7 @@ import java.util.concurrent.Callable;
  * find books for specified category. And I need to know what they found.
  * That's why I implement the {@link Callable}
  */
+@Log4j2
 public class EBooksRobot implements Callable<List<BookData>> {
 
     private static final String LIBRARY_CATEGORY_URL = "http://www.ebooks.com/subjects/";
@@ -52,7 +54,8 @@ public class EBooksRobot implements Callable<List<BookData>> {
         theList =
                 BookDataFactory.newListBookData(parser.parse(documentOptional.get()), new EBooksDataCollector(), category
                         .toString());
-
+        log.debug("Robot[ " + Thread.currentThread().getId() + " ] has the list " + theList);
+        log.debug("Robot[ " + Thread.currentThread().getId() + " ] Finished");
     }
 
 }
