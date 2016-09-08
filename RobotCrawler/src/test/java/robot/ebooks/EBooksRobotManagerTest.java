@@ -1,30 +1,30 @@
 package robot.ebooks;
 
-import model.EBookCategory;
+import model.BookTag;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 public class EBooksRobotManagerTest {
 
     @Test
-    public void fillingTheCategoryListToFind() {
+    public void fillingTheCategoryListToFind(){
         EBooksRobotManager robot = new EBooksRobotManager();
 
-        robot.addTask(EBookCategory.art);
-        robot.addTask(EBookCategory.games);
-        robot.addTask(EBookCategory.pets);
+        robot.addTask(BookTag.BIOGRAPHY);
+        robot.addTask(BookTag.EDUCATION);
+        robot.addTask(BookTag.CRIMINAL);
 
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(robot.hasToFind(EBookCategory.art));
-        softAssert.assertTrue(robot.hasToFind(EBookCategory.games));
-        softAssert.assertTrue(robot.hasToFind(EBookCategory.pets));
+        softAssert.assertTrue(robot.hasToFind(BookTag.BIOGRAPHY));
+        softAssert.assertTrue(robot.hasToFind(BookTag.EDUCATION));
+        softAssert.assertTrue(robot.hasToFind(BookTag.CRIMINAL));
     }
 
     @Test
-    public void testIfFindOffersAndNotThrowException() {
+    public void testIfFindOffersAndNotThrowException(){
         EBooksRobotManager robot = new EBooksRobotManager();
-        robot.addTask(EBookCategory.art);
-        robot.addTask(EBookCategory.education);
+        robot.addTask(BookTag.BIOGRAPHY);
+        robot.addTask(BookTag.EDUCATION);
         robot.startLookingForOffers();
         robot.getOffers();
     }

@@ -1,7 +1,8 @@
 package robot.ebooks;
 
 import model.BookData;
-import model.EBookCategory;
+import model.BookTag;
+import model.Library;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import parser.DocumentBuilder;
@@ -9,6 +10,7 @@ import parser.Parser;
 import parser.ebookscom.BookDataFactory;
 import parser.ebookscom.EBooksDataCollector;
 import parser.ebookscom.EBooksParser;
+import robot.BookTagUtil;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,12 +26,14 @@ public class EBooksRobot implements Callable<List<BookData>> {
 
     private static final String LIBRARY_CATEGORY_URL = "http://www.ebooks.com/subjects/";
 
-    public final EBookCategory category;
+    public final BookTag category;
+    public final BookTagUtil tagUtil;
 
     List<BookData> theList;
 
-    public EBooksRobot(EBookCategory category) {
+    public EBooksRobot(BookTag category, BookTagUtil tagUtil) {
         this.category = category;
+        this.tagUtil = tagUtil;
     }
 
     @Override
@@ -38,21 +42,25 @@ public class EBooksRobot implements Callable<List<BookData>> {
         return theList;
     }
 
-    private void startSearch() {
+    private void searchOne(String category) {
         Optional<Document> documentOptional = DocumentBuilder
                 .builder()
-                .urlPath(LIBRARY_CATEGORY_URL.concat(category.toString()))
+                .urlPath(LIBRARY_CATEGORY_URL.concat(category))
                 .build()
                 .buildFromUrl();
+
         if (!documentOptional.isPresent()) {
             return;
         }
 
         Parser<Element> parser = new EBooksParser();
         theList =
-                BookDataFactory.newListBookData(parser.parse(documentOptional.get()), new EBooksDataCollector(), category
-                        .toString());
+                BookDataFactory.newListBookData(parser.parse(documentOptional.get()), new EBooksDataCollector(this.category.toString()));
 
+    }
+
+    private void startSearch(){
+        tagUtil.tagNamesOf(category, Library.E_BOOKS).forEach(this::searchOne);
     }
 
 }
