@@ -1,6 +1,7 @@
 package robot.ebooks;
 
 import model.BookData;
+import model.BookTag;
 import model.Library;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -9,10 +10,6 @@ import parser.Parser;
 import parser.ebookscom.BookDataFactory;
 import parser.ebookscom.EBooksDataCollector;
 import parser.ebookscom.EBooksParser;
-import model.BookTag;
-import robot.BookTagUtil;
-
-import java.io.IOException;
 import robot.BookTagUtil;
 
 import java.util.List;
